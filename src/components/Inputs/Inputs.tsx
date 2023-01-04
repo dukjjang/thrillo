@@ -9,7 +9,7 @@ interface Props {
   setBoards: Dispatch<SetStateAction<IBoard[]>>;
 }
 
-const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
+const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
   };
@@ -22,9 +22,9 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
   return (
     <div className=' mb-5 flex justify-center items-center'>
       <input
-        className=' py-2 border-2 rounded '
+        className='px-10 w-[400px] py-2 border-2 rounded '
         type='text'
-        placeholder='담당자 입력'
+        placeholder='담당자 검색'
         value={filter}
         onChange={handleOnChange}
       />
@@ -45,4 +45,4 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
   );
 };
 
-export default Search;
+export default Inputs;
