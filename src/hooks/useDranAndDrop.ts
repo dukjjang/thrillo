@@ -1,8 +1,10 @@
-import { useState, DragEvent } from 'react';
-import { boardsData } from '../constants/issues';
+import { useState, DragEvent, Dispatch, SetStateAction } from 'react';
+import { IBoard } from '../types/Types';
 
-export const useDragAndDrop = () => {
-  const [boards, setBoards] = useState(boardsData);
+export const useDragAndDrop = (
+  boards: IBoard[],
+  setBoards: Dispatch<SetStateAction<IBoard[]>>
+) => {
   const [targetCard, setTargetCard] = useState({
     boardId: 0,
     cardId: 0,
@@ -43,5 +45,5 @@ export const useDragAndDrop = () => {
     });
   };
 
-  return { boards, handleDragStart, handleDragEnter, handleDrop };
+  return { handleDragStart, handleDragEnter, handleDrop };
 };

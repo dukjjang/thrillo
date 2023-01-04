@@ -4,6 +4,7 @@ import Card from '../Card/Card';
 
 interface Props {
   board: IBoard;
+  filter: string;
   handleDrop: (e: DragEvent<HTMLElement>) => void;
   handleDragEnter: (boardId: number, cardId: number) => void;
   handleDragStart: (boardId: number, cardId: number) => void;
@@ -11,6 +12,7 @@ interface Props {
 
 const Board = ({
   board,
+  filter,
   handleDrop,
   handleDragEnter,
   handleDragStart,
