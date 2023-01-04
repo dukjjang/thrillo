@@ -1,7 +1,8 @@
-import React from 'react';
+import { Issue } from '../../types/issue';
 
 interface Props {
   name: string;
+  issues: Issue[];
 }
 
 const Board = ({ name }: Props) => {
