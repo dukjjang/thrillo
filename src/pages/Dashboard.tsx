@@ -13,7 +13,7 @@ const Dashboard = () => {
       <section className='flex'>
         {boards.map((boardName) => {
           const data = issues.filter((issue) => issue.state === boardName);
-          return <Board name={boardName} issues={data} />;
+          return <Board key={boardName} name={boardName} issues={data} />;
         })}
       </section>
     </main>
