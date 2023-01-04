@@ -1,19 +1,26 @@
-import { useState } from 'react';
 import Board from '../components/Board/Board';
 import Input from '../components/Input/Input';
-import { boards } from '../constants/boards';
-import { issuesData } from '../constants/issues';
+import { useDragAndDrop } from '../hooks/useDranAndDrop';
 
 const Dashboard = () => {
-  const [issues, setIssues] = useState(issuesData);
+  const { boards, handleDragStart, handleDragEnter, handleDrop } =
+    useDragAndDrop();
+
   return (
     <main>
-      <h1 className='mb-2 text-4xl'>Todo List</h1>
+      <h1 className='mb-2 text-4xl'>Trillo</h1>
       <Input />
       <section className='flex'>
-        {boards.map((boardName) => {
-          const data = issues.filter((issue) => issue.state === boardName);
-          return <Board key={boardName} name={boardName} issues={data} />;
+        {boards.map((board) => {
+          return (
+            <Board
+              key={board.id}
+              board={board}
+              handleDragStart={handleDragStart}
+              handleDrop={handleDrop}
+              handleDragEnter={handleDragEnter}
+            />
+          );
         })}
       </section>
     </main>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Input = () => {
   return (
-    <div className='mb-5'>
+    <div className='mb-5 flex justify-center items-center'>
       <input
         className=' border-2 rounded '
         type='text'

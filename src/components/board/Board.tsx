@@ -1,18 +1,38 @@
-import { Issue } from '../../types/issue';
+import { DragEvent } from 'react';
+import { IBoard } from '../../types/Types';
 import Card from '../Card/Card';
 
 interface Props {
-  name: string;
-  issues: Issue[];
+  board: IBoard;
+  handleDrop: (e: DragEvent<HTMLElement>) => void;
+  handleDragEnter: (boardId: number, cardId: number) => void;
+  handleDragStart: (boardId: number, cardId: number) => void;
 }
 
-const Board = ({ name, issues }: Props) => {
+const Board = ({
+  board,
+  handleDrop,
+  handleDragEnter,
+  handleDragStart,
+}: Props) => {
   return (
-    <div id={name} className='mx-3 border w-[500px] h-[700px] p-5'>
-      {issues.map((issue, idx) => (
-        <Card key={idx} issue={issue} />
+    <ul
+      id={board.id.toString()}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={handleDrop}
+      className='mx-3 border w-[500px] h-[700px] p-5'
+    >
+      {board.cards.map((issue, idx) => (
+        <Card
+          key={idx}
+          id={idx}
+          boardId={board.id}
+          issue={issue}
+          handleDragEnter={handleDragEnter}
+          handleDragStart={handleDragStart}
+        />
       ))}
-    </div>
+    </ul>
   );
 };
 
