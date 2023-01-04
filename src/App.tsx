@@ -1,5 +1,8 @@
+import Dashboard from "./pages/dashboard";
+
 function App() {
-  return <div className=" bg-black">hello world</div>;
+
+  return (<Dashboard / >)
 }
 
 export default App;
