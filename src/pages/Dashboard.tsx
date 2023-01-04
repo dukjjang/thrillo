@@ -1,4 +1,4 @@
-import Board from '../components/board/Board';
+import Board from '../components/Board/Board';
 import Input from '../components/Input/Input';
 const Dashboard = () => {
   return (
