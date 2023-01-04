@@ -1,4 +1,4 @@
-export const TodoList = [
+export const Todos = [
   {
     title: 'watch the movie',
     content:
