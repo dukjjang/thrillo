@@ -5,14 +5,17 @@ import Card from '../Card/Card';
 interface Props {
   board: IBoard;
   filter: string;
+  targetCard: { boardId: number; cardId: number };
   handleDrop: (e: DragEvent<HTMLElement>) => void;
+  dragMargin: (boardId: number, cardId: number) => void;
   handleDragEnter: (boardId: number, cardId: number) => void;
   handleDragStart: (boardId: number, cardId: number) => void;
 }
 
 const Board = ({
   board,
-  filter,
+  targetCard,
+  dragMargin,
   handleDrop,
   handleDragEnter,
   handleDragStart,
@@ -30,8 +33,10 @@ const Board = ({
           id={idx}
           boardId={board.id}
           issue={issue}
+          targetCard={targetCard}
           handleDragEnter={handleDragEnter}
           handleDragStart={handleDragStart}
+          dragMargin={dragMargin}
         />
       ))}
     </ul>

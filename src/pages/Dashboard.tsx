@@ -1,16 +1,20 @@
 import { useMemo, useState } from 'react';
 import Board from '../components/Board/Board';
 import Search from '../components/Search/Search';
-import { boardsData } from '../constants/boardsData';
 import { useDragAndDrop } from '../hooks/useDranAndDrop';
+import { useSortBoards } from '../hooks/useSortBoards';
 
 const Dashboard = () => {
-  const [boards, setBoards] = useState(boardsData);
+  const [boards, setBoards] = useState(useSortBoards);
   const [filter, setFilter] = useState('');
-  const { handleDragStart, handleDragEnter, handleDrop } = useDragAndDrop(
-    boards,
-    setBoards
-  );
+
+  const {
+    handleDragStart,
+    handleDragEnter,
+    handleDrop,
+    targetCard,
+    dragMargin,
+  } = useDragAndDrop(boards, setBoards);
 
   const filteredBoards = useMemo(
     () =>
@@ -25,10 +29,15 @@ const Dashboard = () => {
   );
 
   return (
-    <main>
-      <h1 className='mb-2 text-4xl'>Trillo</h1>
-      <Search filter={filter} setFilter={setFilter} setBoards={setBoards} />
-      <section className='flex'>
+    <main className='relative h-screen '>
+      <h1 className='mb-10 text-7xl text-center'>Trillo</h1>
+      <Search
+        filter={filter}
+        boards={boards}
+        setFilter={setFilter}
+        setBoards={setBoards}
+      />
+      <section className='flex justify-center'>
         {filteredBoards.map((board) => {
           return (
             <Board
@@ -38,6 +47,8 @@ const Dashboard = () => {
               handleDragStart={handleDragStart}
               handleDrop={handleDrop}
               handleDragEnter={handleDragEnter}
+              targetCard={targetCard}
+              dragMargin={dragMargin}
             />
           );
         })}

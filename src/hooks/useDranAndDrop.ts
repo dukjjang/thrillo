@@ -6,8 +6,8 @@ export const useDragAndDrop = (
   setBoards: Dispatch<SetStateAction<IBoard[]>>
 ) => {
   const [targetCard, setTargetCard] = useState({
-    boardId: 0,
-    cardId: 0,
+    boardId: -1,
+    cardId: -1,
   });
   const [dragCard, setDargCard] = useState({ boardId: 0, cardId: 0 });
 
@@ -32,8 +32,8 @@ export const useDragAndDrop = (
     setBoards(tempBoardsList);
 
     setTargetCard({
-      boardId: 0,
-      cardId: 0,
+      boardId: -1,
+      cardId: -1,
     });
     setDargCard({ boardId: 0, cardId: 0 });
   };
@@ -45,5 +45,21 @@ export const useDragAndDrop = (
     });
   };
 
-  return { handleDragStart, handleDragEnter, handleDrop };
+  const dragMargin = (boardId: number, cardId: number) => {
+    if (
+      targetCard.boardId === boardId &&
+      targetCard.cardId === cardId &&
+      targetCard.cardId !== -1
+    ) {
+      return 'mt-5';
+    }
+  };
+
+  return {
+    dragMargin,
+    handleDragStart,
+    handleDragEnter,
+    handleDrop,
+    targetCard,
+  };
 };
