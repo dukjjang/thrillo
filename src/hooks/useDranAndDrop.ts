@@ -3,12 +3,10 @@ import { IBoard } from '../types/Types';
 
 export const useDragAndDrop = (
   boards: IBoard[],
-  setBoards: Dispatch<SetStateAction<IBoard[]>>
+  setBoards: Dispatch<SetStateAction<IBoard[]>>,
+  targetCard: { boardId: number; cardId: number },
+  setTargetCard: Dispatch<SetStateAction<{ boardId: number; cardId: number }>>
 ) => {
-  const [targetCard, setTargetCard] = useState({
-    boardId: -1,
-    cardId: -1,
-  });
   const [dragCard, setDargCard] = useState({ boardId: 0, cardId: 0 });
 
   const handleDragStart = (boardId: number, cardId: number): void => {
@@ -55,10 +53,24 @@ export const useDragAndDrop = (
     }
   };
 
+  const handleDelete = (boardId: number, cardId: number) => {
+    const tempBoardsList = [...boards];
+    const sourceCard = tempBoardsList[boardId].cards[cardId];
+    tempBoardsList[boardId].cards.splice(cardId, 1);
+    setBoards(tempBoardsList);
+
+    setTargetCard({
+      boardId: -1,
+      cardId: -1,
+    });
+    setDargCard({ boardId: 0, cardId: 0 });
+  };
+
   return {
     dragMargin,
     handleDragStart,
     handleDragEnter,
+    handleDelete,
     handleDrop,
     targetCard,
   };

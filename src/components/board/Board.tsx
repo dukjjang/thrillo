@@ -10,6 +10,7 @@ interface Props {
   dragMargin: (boardId: number, cardId: number) => void;
   handleDragEnter: (boardId: number, cardId: number) => void;
   handleDragStart: (boardId: number, cardId: number) => void;
+  handleDelete: (boardId: number, cardId: number) => void;
 }
 
 const Board = ({
@@ -19,6 +20,7 @@ const Board = ({
   handleDrop,
   handleDragEnter,
   handleDragStart,
+  handleDelete,
 }: Props) => {
   return (
     <ul
@@ -36,6 +38,7 @@ const Board = ({
           targetCard={targetCard}
           handleDragEnter={handleDragEnter}
           handleDragStart={handleDragStart}
+          handleDelete={handleDelete}
           dragMargin={dragMargin}
         />
       ))}

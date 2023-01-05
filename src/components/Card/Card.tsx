@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Issue } from '../../types/Types';
 
 interface Props {
@@ -9,16 +8,17 @@ interface Props {
   dragMargin: (boardId: number, cardId: number) => void;
   handleDragEnter: (boardId: number, cardId: number) => void;
   handleDragStart: (boardId: number, cardId: number) => void;
+  handleDelete: (boardId: number, cardId: number) => void;
 }
 
 const Card = ({
   issue,
   id,
   boardId,
-  targetCard,
   dragMargin,
   handleDragEnter,
   handleDragStart,
+  handleDelete,
 }: Props) => {
   return (
     <li
@@ -31,10 +31,16 @@ const Card = ({
       className={` ${dragMargin(
         boardId,
         id
-      )} duration-300 bg-sky-200 mb-2 cursor-move flex gap-2 p-4 border rounded border-slate-400`}
+      )} duration-300 bg-sky-200 mb-2 cursor-pointer flex justify-between items-center gap-2 p-4 border rounded border-slate-400`}
     >
-      <input type='checkbox' />
       <p>{issue.title}</p>
+      <button
+        className='bg-red-400 p-2 rounded'
+        type='button'
+        onClick={(e) => handleDelete(boardId, id)}
+      >
+        삭제
+      </button>
     </li>
   );
 };

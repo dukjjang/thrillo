@@ -7,14 +7,18 @@ import { useSortBoards } from '../hooks/useSortBoards';
 const Dashboard = () => {
   const [boards, setBoards] = useState(useSortBoards);
   const [filter, setFilter] = useState('');
+  const [targetCard, setTargetCard] = useState({
+    boardId: -1,
+    cardId: -1,
+  });
 
   const {
     handleDragStart,
     handleDragEnter,
     handleDrop,
-    targetCard,
     dragMargin,
-  } = useDragAndDrop(boards, setBoards);
+    handleDelete,
+  } = useDragAndDrop(boards, setBoards, targetCard, setTargetCard);
 
   const filteredBoards = useMemo(
     () =>
@@ -49,6 +53,7 @@ const Dashboard = () => {
               handleDragEnter={handleDragEnter}
               targetCard={targetCard}
               dragMargin={dragMargin}
+              handleDelete={handleDelete}
             />
           );
         })}
