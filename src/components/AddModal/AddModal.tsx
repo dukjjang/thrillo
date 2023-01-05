@@ -43,7 +43,7 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
       (board) => board.state === value.state
     )[0];
 
-    targetBoard.cards.unshift(value);
+    targetBoard.cards.push(value);
     tempBoards[targetBoardIndex] = targetBoard;
 
     setBoards(tempBoards);
