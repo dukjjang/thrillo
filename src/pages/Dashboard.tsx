@@ -39,14 +39,16 @@ const Dashboard = () => {
   console.log(filteredBoards);
   return (
     <main className='relative h-screen py-10 px-10 lg:px-[250px] xl:px-[300px] '>
-      <h1 className='mb-10 text-7xl text-center'>Trillo</h1>
+      <header>
+        <h1 className='mb-10 text-7xl text-center'>Trillo</h1>
+      </header>{' '}
       <Search
         filter={filter}
         boards={boards}
         setFilter={setFilter}
         setBoards={setBoards}
       />
-      <section className='flex justify-center'>
+      <div className='flex justify-center'>
         {filteredBoards.map((board) => {
           return (
             <Board
@@ -62,7 +64,7 @@ const Dashboard = () => {
             />
           );
         })}
-      </section>
+      </div>
     </main>
   );
 };

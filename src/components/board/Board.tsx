@@ -1,6 +1,7 @@
 import { DragEvent } from 'react';
 import { IBoard } from '../../types/Types';
 import Card from '../Card/Card';
+import { HiPlusSm } from 'react-icons/hi';
 
 interface Props {
   board: IBoard;
@@ -27,7 +28,7 @@ const Board = ({
       id={board.id.toString()}
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
-      className='mx-3  w-[500px] md:p-5'
+      className='py-5 mx-3  w-[500px] md:p-5'
     >
       <div className='px-2 mb-3 '>
         <h2>{board.name}</h2>
@@ -45,6 +46,10 @@ const Board = ({
           dragMargin={dragMargin}
         />
       ))}
+      <button className='bg-slate-100 rounded-lg w-full py-3 text-sm flex justify-center items-center gap-2'>
+        <HiPlusSm size={22} />
+        <p className=' opacity-50'>Add new Card</p>
+      </button>
     </ul>
   );
 };
