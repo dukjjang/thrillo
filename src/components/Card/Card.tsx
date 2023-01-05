@@ -29,7 +29,6 @@ const Card = ({
 
   useCheckClickOutside(setIsOptionsOpen, optionsRef);
 
-  console.log(isOptionsOpen);
   return (
     <li
       id={id.toString()}
@@ -41,12 +40,12 @@ const Card = ({
       className={` ${dragMargin(
         boardId,
         id
-      )} text-sm duration-300 mb-2 cursor-pointer flex justify-between items-center gap-2 p-4 border rounded-lg shadow-lg`}
+      )} min-w-[122px] bg-white text-sm duration-300 mb-2 cursor-pointer flex justify-between items-center gap-2 p-4 border rounded-lg shadow-lg`}
     >
       <img
         alt='profile'
         src={issue.image}
-        className=' rounded-full w-10 h-10 '
+        className=' hidden md:block rounded-full w-10 h-10 '
       />
       <p>{issue.title}</p>
       <div className=' relative'>
@@ -60,7 +59,7 @@ const Card = ({
         {isOptionsOpen && (
           <ul
             ref={optionsRef}
-            className='  w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl absolute z-10 '
+            className=' w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl absolute z-10 '
           >
             {cardOptions.map((option) => (
               <li

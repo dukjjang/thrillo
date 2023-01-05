@@ -45,11 +45,17 @@ export const useDragAndDrop = (
 
   const dragMargin = (boardId: number, cardId: number) => {
     if (
+      targetCard.cardId === dragCard.cardId &&
+      targetCard.boardId === dragCard.boardId
+    )
+      return;
+
+    if (
       targetCard.boardId === boardId &&
       targetCard.cardId === cardId &&
       targetCard.cardId !== -1
     ) {
-      return 'mt-5';
+      return 'mt-10';
     }
   };
 

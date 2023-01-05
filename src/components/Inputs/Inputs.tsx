@@ -21,7 +21,7 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
   };
 
   return (
-    <div className=' mb-5 flex justify-center items-center'>
+    <div className='py-6 px-10 m-auto w-[95%] border-b-2  mb-5 flex justify-end items-center'>
       <label className=' cursor-pointer ' htmlFor='managerInput'>
         <RxMagnifyingGlass
           className=' hover:text-sky-400 hover:scale-150 duration-150 '
@@ -32,7 +32,7 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
         id='managerInput'
         className=' duration-300 px-2 w-0 focus:w-[200px] py-2 rounded-lg text-sm mr-2 bg-white '
         type='text'
-        placeholder='담당자 검색'
+        placeholder='검색'
         value={filter}
         onChange={handleOnChange}
       />
