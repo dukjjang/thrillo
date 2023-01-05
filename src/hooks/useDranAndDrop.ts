@@ -55,7 +55,6 @@ export const useDragAndDrop = (
 
   const handleDelete = (boardId: number, cardId: number) => {
     const tempBoardsList = [...boards];
-    const sourceCard = tempBoardsList[boardId].cards[cardId];
     tempBoardsList[boardId].cards.splice(cardId, 1);
     setBoards(tempBoardsList);
 

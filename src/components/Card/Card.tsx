@@ -37,7 +37,7 @@ const Card = ({
       <button
         className='bg-red-400 p-2 rounded'
         type='button'
-        onClick={(e) => handleDelete(boardId, id)}
+        onClick={() => handleDelete(boardId, id)}
       >
         삭제
       </button>
