@@ -36,6 +36,7 @@ const Dashboard = () => {
     [filter, boards]
   );
 
+  console.log(filteredBoards);
   return (
     <main className='relative h-screen py-10 px-10 lg:px-[250px] xl:px-[300px] '>
       <h1 className='mb-10 text-7xl text-center'>Trillo</h1>

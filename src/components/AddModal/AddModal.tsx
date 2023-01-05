@@ -35,14 +35,6 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // setProfile Image
-    setValue((prev) => ({
-      ...prev,
-      image: managers
-        .filter((manager) => manager.name === value.manager)
-        .join(''),
-    }));
-
     const tempBoards = [...boards];
 
     const targetBoardIndex = Number(
@@ -53,7 +45,14 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
       (board) => board.state === value.state
     )[0];
 
-    targetBoard.cards.push(value);
+    // add Profile Image
+    const newValue = {
+      ...value,
+      image: managers.filter((manager) => manager.name === value.manager)[0]
+        .image,
+    };
+
+    targetBoard.cards.push(newValue);
     tempBoards[targetBoardIndex] = targetBoard;
 
     setBoards(tempBoards);
@@ -61,7 +60,7 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
   };
 
   return (
-    <div className=' fixed top-0 left-0 w-full h-screen '>
+    <div className=' fixed top-0 left-0 w-full z-20 h-screen '>
       <div className='  flex justify-center items-center bg-[rgba(0,0,0,0.2)]  h-screen'>
         <form
           onSubmit={handleSubmit}
@@ -96,7 +95,7 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
           />
           <div className='flex justify-center gap-10'>
             <button type='submit' className='py-3 px-5 bg-sky-300 rounded'>
-              추가
+              저장
             </button>
             <button
               type='button'
