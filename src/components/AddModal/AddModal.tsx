@@ -7,7 +7,7 @@ import {
 } from 'react';
 import { IBoard } from '../../types/Types';
 import DropDown from '../DropDown/DropDown';
-import { states } from '../../constants/dropList';
+import { states, managers } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 
 interface Props {
@@ -34,6 +34,15 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // setProfile Image
+    setValue((prev) => ({
+      ...prev,
+      image: managers
+        .filter((manager) => manager.name === value.manager)
+        .join(''),
+    }));
+
     const tempBoards = [...boards];
 
     const targetBoardIndex = Number(

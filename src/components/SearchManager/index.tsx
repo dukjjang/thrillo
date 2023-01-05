@@ -23,7 +23,7 @@ const SearchManager = ({ setValue }: Props) => {
   const filteredManagers = useMemo(
     () =>
       managers.filter((manager) => {
-        return manager.toLowerCase().includes(filter.toLowerCase());
+        return manager.name.toLowerCase().includes(filter.toLowerCase());
       }),
     [filter]
   );
@@ -55,15 +55,18 @@ const SearchManager = ({ setValue }: Props) => {
           focused ? 'block' : 'invisible'
         }  cursor-pointer absolute w-full bg-white border `}
       >
-        {filteredManagers.map((manager) => (
-          <li
-            key={manager}
-            onMouseDown={() => handleClick(manager)}
-            className='p-3 list-none hover:bg-sky-200'
-          >
-            {manager}
-          </li>
-        ))}
+        {filteredManagers.map((manager) => {
+          const { name } = manager;
+          return (
+            <li
+              key={name}
+              onMouseDown={() => handleClick(name)}
+              className='p-3 list-none hover:bg-sky-200'
+            >
+              {name}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

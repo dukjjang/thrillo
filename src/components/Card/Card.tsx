@@ -45,7 +45,7 @@ const Card = ({
       <img
         alt='profile'
         src={issue.image}
-        className=' hidden md:block rounded-full w-10 h-10 '
+        className=' object-cover hidden md:block rounded-full w-10 h-10 '
       />
       <p>{issue.title}</p>
       <div className=' relative'>

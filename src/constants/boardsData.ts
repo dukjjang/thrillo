@@ -29,7 +29,7 @@ export const boardsData = [
         deadLine: '23-02-25',
         state: 'inProgress',
         manager: '주우재',
-        image: '/images/profile_image_0.png',
+        image: '/images/profile_image_2.png',
       },
       {
         id: 1,
@@ -40,7 +40,7 @@ export const boardsData = [
 
         state: 'inProgress',
         manager: '주호민',
-        image: '/images/profile_image_0.png',
+        image: '/images/profile_image_3.png',
       },
     ],
   },
