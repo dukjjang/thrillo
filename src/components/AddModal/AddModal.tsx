@@ -23,6 +23,7 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
     deadLine: '',
     state: '',
     manager: '',
+    image: '',
   });
 
   const handleChange = (

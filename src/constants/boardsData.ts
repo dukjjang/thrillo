@@ -2,6 +2,7 @@ export const boardsData = [
   {
     id: 0,
     state: 'todo',
+    name: '할일',
     cards: [
       {
         id: 0,
@@ -11,12 +12,14 @@ export const boardsData = [
         deadLine: '23-01-25',
         state: 'todo',
         manager: '뉴진스',
+        image: '/images/profile_image_1.png',
       },
     ],
   },
   {
     id: 1,
     state: 'inProgress',
+    name: '진행중',
     cards: [
       {
         id: 0,
@@ -26,6 +29,7 @@ export const boardsData = [
         deadLine: '23-02-25',
         state: 'inProgress',
         manager: '박명수',
+        image: '/images/profile_image_0.png',
       },
       {
         id: 1,
@@ -36,12 +40,14 @@ export const boardsData = [
 
         state: 'inProgress',
         manager: '하하',
+        image: '/images/profile_image_0.png',
       },
     ],
   },
   {
     id: 2,
     state: 'completed',
+    name: '완료',
     cards: [
       {
         id: 0,
@@ -51,6 +57,7 @@ export const boardsData = [
         deadLine: '23-05-25',
         state: 'completed',
         manager: '노홍철',
+        image: '/images/profile_image_0.png',
       },
     ],
   },

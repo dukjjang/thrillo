@@ -22,7 +22,7 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
   return (
     <div className=' mb-5 flex justify-center items-center'>
       <input
-        className='px-10 w-[400px] py-2 border-2 rounded '
+        className='px-10 w-[200px] py-2 rounded-lg text-sm mr-2 bg-white '
         type='text'
         placeholder='담당자 검색'
         value={filter}
@@ -30,7 +30,7 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
       />
       <div
         onClick={toggleModal}
-        className=' border cursor-pointer  shadow-md   rounded px-5 py-2  text-center text-lg'
+        className=' border cursor-pointer shadow-xl rounded-lg px-5 py-2 text-center text-sm bg-sky-300 '
       >
         새로 만들기
       </div>
