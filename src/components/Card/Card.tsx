@@ -54,24 +54,29 @@ const Card = ({
           type='button'
           onClick={() => setIsOptionsOpen(!isOptionsOpen)}
         >
-          <GoKebabHorizontal size={20} />
+          <GoKebabHorizontal size={22} />
         </button>
         {isOptionsOpen && (
           <ul
             ref={optionsRef}
             className=' w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl absolute z-10 '
           >
-            {cardOptions.map((option) => (
-              <li
-                className='flex justify-start rounded-md items-center py-2  px-2 gap-2 hover:bg-gray-200 text-sm '
-                key={option.id}
-                onClick={() => handleDelete(boardId, id)}
-              >
-                {option.name === '삭제' && <GoTrashcan size={17} />}
-                {option.name === '편집' && <GoPencil size={17} />}
-                {option.name}
-              </li>
-            ))}
+            {cardOptions.map((option) => {
+              const { name } = option;
+              return (
+                <li
+                  className='flex justify-start rounded-md items-center py-2  px-2 gap-2 hover:bg-gray-200 text-sm '
+                  key={id}
+                  onClick={() => {
+                    name === '삭제' && handleDelete(boardId, id);
+                  }}
+                >
+                  {name === '삭제' && <GoTrashcan size={17} />}
+                  {name === '편집' && <GoPencil size={17} />}
+                  <p>{name}</p>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
