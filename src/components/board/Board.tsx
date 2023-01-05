@@ -1,9 +1,10 @@
-import { DragEvent } from 'react';
+import { Dispatch, DragEvent, SetStateAction } from 'react';
 import { IBoard } from '../../types/Types';
 import Card from '../Card/Card';
 import { HiPlusSm } from 'react-icons/hi';
 
 interface Props {
+  boards: IBoard[];
   board: IBoard;
   filter: string;
   targetCard: { boardId: number; cardId: number };
@@ -12,10 +13,13 @@ interface Props {
   handleDragEnter: (boardId: number, cardId: number) => void;
   handleDragStart: (boardId: number, cardId: number) => void;
   handleDelete: (boardId: number, cardId: number) => void;
+  setBoards: Dispatch<SetStateAction<IBoard[]>>;
 }
 
 const Board = ({
+  boards,
   board,
+  setBoards,
   targetCard,
   dragMargin,
   handleDrop,
@@ -23,6 +27,35 @@ const Board = ({
   handleDragStart,
   handleDelete,
 }: Props) => {
+  const createEmptyCard = (
+    board: IBoard,
+    setBoards: Dispatch<SetStateAction<IBoard[]>>
+  ) => {
+    const { state, id } = board;
+
+    const emptyCard = {
+      id: Math.random(),
+      title: '제목없음',
+      content: '',
+      state: state,
+      deadLine: '',
+      manager: '',
+      image: '/images/profile_image_unknown.png',
+    };
+
+    const tempBoards = [...boards];
+    const targetBoardIndex = Number(
+      tempBoards.findIndex((board) => board.state === state)
+    );
+
+    const targetBoard = tempBoards.filter((board) => board.state === state)[0];
+
+    targetBoard.cards.push(emptyCard);
+    tempBoards[targetBoardIndex] = targetBoard;
+
+    setBoards(tempBoards);
+  };
+
   return (
     <ul
       id={board.id.toString()}
@@ -46,9 +79,12 @@ const Board = ({
           dragMargin={dragMargin}
         />
       ))}
-      <button className='bg-slate-100 rounded-lg w-full py-3 text-sm flex justify-center items-center gap-2'>
+      <button
+        onClick={() => createEmptyCard(board, setBoards)}
+        className='bg-slate-100 rounded-lg w-full py-3 text-sm flex justify-center items-center gap-2'
+      >
         <HiPlusSm size={22} />
-        <p className=' opacity-50'>Add new Card</p>
+        <p className=' opacity-40'>Add new card</p>
       </button>
     </ul>
   );

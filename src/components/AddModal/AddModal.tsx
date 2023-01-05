@@ -35,6 +35,13 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // add Profile Image
+    const newValue = {
+      ...value,
+      image: managers.filter((manager) => manager.name === value.manager)[0]
+        .image,
+    };
+
     const tempBoards = [...boards];
 
     const targetBoardIndex = Number(
@@ -44,13 +51,6 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
     const targetBoard = tempBoards.filter(
       (board) => board.state === value.state
     )[0];
-
-    // add Profile Image
-    const newValue = {
-      ...value,
-      image: managers.filter((manager) => manager.name === value.manager)[0]
-        .image,
-    };
 
     targetBoard.cards.push(newValue);
     tempBoards[targetBoardIndex] = targetBoard;
