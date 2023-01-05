@@ -31,7 +31,7 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
       </label>
       <input
         id='managerInput'
-        className=' duration-300 px-2 w-0 focus:w-[200px] py-2 rounded-lg text-sm mr-2 bg-white '
+        className=' focus:w-[200px] focus:border  duration-300 px-2 w-0  py-2 rounded-lg text-sm mr-2 bg-white '
         type='text'
         placeholder='검색'
         onBlur={() => setFilter('')}

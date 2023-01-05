@@ -51,7 +51,9 @@ const Card = ({
       <p>{issue.title}</p>
       <div className=' relative'>
         <button
-          className=''
+          className={`${isOptionsOpen && 'bg-slate-200'} ${
+            !isOptionsOpen && 'hover:bg-slate-100'
+          }  active:bg-slate-200 rounded-md`}
           type='button'
           onClick={() => setIsOptionsOpen(!isOptionsOpen)}
         >
