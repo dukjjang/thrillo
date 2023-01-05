@@ -7,7 +7,8 @@ import {
 } from 'react';
 import { IBoard } from '../../types/Types';
 import DropDown from '../DropDown/DropDown';
-import { managers, states } from '../../constants/dropList';
+import { states } from '../../constants/dropList';
+import SearchManager from '../SearchManager';
 
 interface Props {
   toggleModal: () => void;
@@ -76,19 +77,13 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
             name='deadLine'
             type='datetime-local'
           />
-          <DropDown
-            value={value.manager}
-            name='manager'
-            dropList={managers}
-            setValue={setValue}
-          />
+          <SearchManager setValue={setValue} />
           <DropDown
             value={value.state}
             name='state'
             dropList={states}
             setValue={setValue}
           />
-
           <div className='flex justify-center gap-10'>
             <button type='submit' className='py-3 px-5 bg-sky-300 rounded'>
               추가
