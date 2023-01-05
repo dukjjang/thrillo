@@ -11,17 +11,18 @@ interface Props {
 }
 
 const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
+  const [modal, setModal] = useState(false);
+
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
   };
-  const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
   };
 
   return (
-    <div className='py-6 px-10 m-auto w-[95%] border-b-2  mb-5 flex justify-end items-center'>
+    <div className='py-6 px-10 m-auto w-[95%] border-b-2 mb-5 flex justify-end items-center'>
       <label className=' cursor-pointer ' htmlFor='managerInput'>
         <RxMagnifyingGlass
           className=' hover:text-sky-400 hover:scale-150 duration-150 '
@@ -33,6 +34,7 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
         className=' duration-300 px-2 w-0 focus:w-[200px] py-2 rounded-lg text-sm mr-2 bg-white '
         type='text'
         placeholder='검색'
+        onBlur={() => setFilter('')}
         value={filter}
         onChange={handleOnChange}
       />

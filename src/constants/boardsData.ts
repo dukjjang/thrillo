@@ -28,7 +28,7 @@ export const boardsData = [
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         deadLine: '23-02-25',
         state: 'inProgress',
-        manager: '박명수',
+        manager: '주우재',
         image: '/images/profile_image_0.png',
       },
       {
@@ -39,7 +39,7 @@ export const boardsData = [
         deadLine: '23-04-25',
 
         state: 'inProgress',
-        manager: '하하',
+        manager: '주호민',
         image: '/images/profile_image_0.png',
       },
     ],
@@ -56,7 +56,7 @@ export const boardsData = [
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         deadLine: '23-05-25',
         state: 'completed',
-        manager: '노홍철',
+        manager: '진현덕',
         image: '/images/profile_image_0.png',
       },
     ],
