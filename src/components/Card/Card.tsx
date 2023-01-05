@@ -1,6 +1,8 @@
+import { useRef, useState } from 'react';
 import { Issue } from '../../types/Types';
 import { GoKebabHorizontal, GoTrashcan, GoPencil } from 'react-icons/go';
-import { useState } from 'react';
+import { useCheckClickOutside } from '../../hooks/useCheckClickOutside';
+import { cardOptions } from '../../constants/cardOptions';
 
 interface Props {
   id: number;
@@ -23,10 +25,11 @@ const Card = ({
   handleDelete,
 }: Props) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
-  const cardOptions = [
-    { id: 0, name: '편집' },
-    { id: 1, name: '삭제' },
-  ];
+  const optionsRef = useRef<HTMLUListElement>(null);
+
+  useCheckClickOutside(setIsOptionsOpen, optionsRef);
+
+  console.log(isOptionsOpen);
   return (
     <li
       id={id.toString()}
@@ -55,11 +58,15 @@ const Card = ({
           <GoKebabHorizontal size={20} />
         </button>
         {isOptionsOpen && (
-          <ul className='  w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl absolute z-10 '>
+          <ul
+            ref={optionsRef}
+            className='  w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl absolute z-10 '
+          >
             {cardOptions.map((option) => (
               <li
                 className='flex justify-start rounded-md items-center py-2  px-2 gap-2 hover:bg-gray-200 text-sm '
                 key={option.id}
+                onClick={() => handleDelete(boardId, id)}
               >
                 {option.name === '삭제' && <GoTrashcan size={17} />}
                 {option.name === '편집' && <GoPencil size={17} />}

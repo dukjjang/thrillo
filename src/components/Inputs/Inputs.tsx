@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState, ChangeEvent } from 'react';
 import { IBoard } from '../../types/Types';
 import AddModal from '../AddModal/AddModal';
+import { RxMagnifyingGlass } from 'react-icons/rx';
 
 interface Props {
   filter: string;
@@ -21,8 +22,15 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
 
   return (
     <div className=' mb-5 flex justify-center items-center'>
+      <label className=' cursor-pointer ' htmlFor='managerInput'>
+        <RxMagnifyingGlass
+          className=' hover:text-sky-400 hover:scale-150 duration-150 '
+          size={20}
+        />
+      </label>
       <input
-        className='px-10 w-[200px] py-2 rounded-lg text-sm mr-2 bg-white '
+        id='managerInput'
+        className=' duration-300 px-2 w-0 focus:w-[200px] py-2 rounded-lg text-sm mr-2 bg-white '
         type='text'
         placeholder='담당자 검색'
         value={filter}

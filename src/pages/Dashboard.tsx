@@ -24,7 +24,11 @@ const Dashboard = () => {
     () =>
       boards.map((board) => {
         const filteredCards = board.cards.filter((card) => {
-          return card.manager.toLowerCase().includes(filter.toLowerCase());
+          return (
+            card.title.toLowerCase().includes(filter.toLowerCase()) ||
+            card.manager.toLowerCase().includes(filter.toLowerCase()) ||
+            card.content.toLowerCase().includes(filter.toLowerCase())
+          );
         });
         const filteredBoard = { ...board, cards: filteredCards };
         return filteredBoard;
