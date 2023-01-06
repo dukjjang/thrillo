@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { IBoard, Issue } from '../../types/Types';
-import { GoKebabHorizontal, GoTrashcan, GoPencil } from 'react-icons/go';
+import { GoKebabHorizontal } from 'react-icons/go';
 import { useCheckClickOutside } from '../../hooks/useCheckClickOutside';
-import { cardOptions } from '../../constants/cardOptions';
 import CardDetail from '../CardDetail/CardDetail';
 import CardMenu from '../CardMenu';
 
@@ -39,7 +38,11 @@ const Card = ({
   const handleOpenDetail = (e: React.MouseEvent<HTMLLIElement>) => {
     if (isMenuOpen) return;
     const target = e.target as HTMLElement;
-    if (target.tagName !== 'svg' && target.tagName !== 'path') {
+    if (
+      target.tagName !== 'svg' &&
+      target.tagName !== 'path' &&
+      target.tagName !== 'BUTTON'
+    ) {
       setIsOpenDetail(true);
     }
   };
@@ -86,17 +89,15 @@ const Card = ({
           )}
         </div>
       </li>
-      <>
-        {isOpenDetail && (
-          <CardDetail
-            cardIdx={id}
-            boards={boards}
-            setBoards={setBoards}
-            toggleModal={setIsOpenDetail}
-            item={issue}
-          />
-        )}
-      </>
+      {isOpenDetail && (
+        <CardDetail
+          cardIdx={id}
+          boards={boards}
+          setBoards={setBoards}
+          toggleModal={setIsOpenDetail}
+          item={issue}
+        />
+      )}
     </>
   );
 };
