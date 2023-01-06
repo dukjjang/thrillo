@@ -7,9 +7,6 @@ import { FaLightbulb, FaRegLightbulb } from 'react-icons/fa';
 import { IBoard } from '../types/Types';
 
 const Dashboard = () => {
-  const localBoards = JSON.parse(localStorage.getItem('boards')!);
-
-  console.log(localBoards);
   const [boards, setBoards] = useState(useSortBoards);
   const [filter, setFilter] = useState('');
   const [light, setLight] = useState(false);
