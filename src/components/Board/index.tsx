@@ -51,6 +51,8 @@ const Board = ({
     targetBoard.cards.push(newEmptyCard);
 
     setBoards(tempBoards);
+
+    localStorage.setItem('boards', JSON.stringify(tempBoards));
   };
 
   return (

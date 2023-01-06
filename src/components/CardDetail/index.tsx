@@ -77,6 +77,8 @@ const CardDetail = ({
     }
 
     setBoards(tempBoards);
+
+    localStorage.setItem('boards', JSON.stringify(tempBoards));
     toggleModal(false);
   };
 

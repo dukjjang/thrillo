@@ -4,8 +4,12 @@ import Search from '../components/Search';
 import { useDragAndDrop } from '../hooks/useDranAndDrop';
 import { useSortBoards } from '../hooks/useSortBoards';
 import { FaLightbulb, FaRegLightbulb } from 'react-icons/fa';
+import { IBoard } from '../types/Types';
 
 const Dashboard = () => {
+  const localBoards = JSON.parse(localStorage.getItem('boards')!);
+
+  console.log(localBoards);
   const [boards, setBoards] = useState(useSortBoards);
   const [filter, setFilter] = useState('');
   const [light, setLight] = useState(false);
@@ -17,7 +21,7 @@ const Dashboard = () => {
 
   const filteredBoards = useMemo(
     () =>
-      boards.map((board) => {
+      boards.map((board: IBoard) => {
         const filteredCards = board.cards.filter((card) => {
           return (
             card.title.toLowerCase().includes(filter.toLowerCase()) ||
@@ -71,7 +75,7 @@ const Dashboard = () => {
         setBoards={setBoards}
       />
       <div className='flex justify-center'>
-        {filteredBoards.map((board) => {
+        {filteredBoards.map((board: IBoard) => {
           return (
             <Board
               key={board.id}

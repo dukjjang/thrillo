@@ -38,6 +38,8 @@ export const useDragAndDrop = (
       cardId: -1,
     });
     setDargCard({ boardId: 0, cardId: 0 });
+
+    localStorage.setItem('boards', JSON.stringify(tempBoardsList));
   };
 
   const handleDragEnter = (boardId: number, cardId: number): void => {
@@ -78,6 +80,8 @@ export const useDragAndDrop = (
     const tempBoardsList = [...boards];
     tempBoardsList[boardId].cards.splice(cardId, 1);
     setBoards(tempBoardsList);
+
+    localStorage.setItem('boards', JSON.stringify(tempBoardsList));
 
     setTargetCard({
       boardId: -1,
