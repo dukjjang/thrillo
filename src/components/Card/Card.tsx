@@ -36,6 +36,7 @@ const Card = ({
   useCheckClickOutside(setIsOptionsOpen, optionsRef);
 
   const handleOpenDetail = (e: React.MouseEvent<HTMLLIElement>) => {
+    if (isOptionsOpen) return;
     const target = e.target as HTMLElement;
     if (target.tagName !== 'svg' && target.tagName !== 'path') {
       setIsOpenDetail(true);
@@ -46,7 +47,7 @@ const Card = ({
     <>
       <li
         id={id.toString()}
-        onClick={() => !isOptionsOpen && handleOpenDetail}
+        onClick={handleOpenDetail}
         draggable
         onDragStart={() => {
           handleDragStart(boardId, id);

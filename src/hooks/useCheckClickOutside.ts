@@ -7,7 +7,9 @@ export const useCheckClickOutside = (
   useEffect(() => {
     const handleClick = (e: any): void => {
       if (ref.current && !ref.current.contains(e.target)) {
-        setDisplay(false);
+        setTimeout(() => {
+          setDisplay(false);
+        }, 0);
       }
     };
     document.addEventListener('click', handleClick, true);
