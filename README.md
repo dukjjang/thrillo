@@ -14,7 +14,7 @@
 
 
 
-배포주소 https://trillo-q775w94zp-dukjjang.vercel.app/
+배포주소 https://trillo-dukjjang.vercel.app/
 
 ---
 
