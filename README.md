@@ -2,7 +2,7 @@
 
 <h3>칸반보드로 할일을 관리 할 수 있는 프로젝트</h3>
 
-기술스택
+사용한 기술
 ---
 [![My Skills](https://skillicons.dev/icons?i=typescript,html,css,tailwindcss,react)](https://skillicons.dev)
 ---
