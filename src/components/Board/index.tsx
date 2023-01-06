@@ -1,6 +1,6 @@
 import { Dispatch, DragEvent, SetStateAction } from 'react';
 import { IBoard } from '../../types/Types';
-import Card from '../Card/Card';
+import Card from '../Card';
 import { HiPlusSm } from 'react-icons/hi';
 import { emptyCard } from '../../constants/boardsData';
 
