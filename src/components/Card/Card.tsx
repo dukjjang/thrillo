@@ -4,6 +4,7 @@ import { GoKebabHorizontal, GoTrashcan, GoPencil } from 'react-icons/go';
 import { useCheckClickOutside } from '../../hooks/useCheckClickOutside';
 import { cardOptions } from '../../constants/cardOptions';
 import CardDetail from '../CardDetail/CardDetail';
+import CardMenu from '../CardMenu';
 
 interface Props {
   id: number;
@@ -29,14 +30,14 @@ const Card = ({
   handleDragStart,
   handleDelete,
 }: Props) => {
-  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpenDetail, setIsOpenDetail] = useState(false);
   const optionsRef = useRef<HTMLUListElement>(null);
 
-  useCheckClickOutside(setIsOptionsOpen, optionsRef);
+  useCheckClickOutside(setIsMenuOpen, optionsRef);
 
   const handleOpenDetail = (e: React.MouseEvent<HTMLLIElement>) => {
-    if (isOptionsOpen) return;
+    if (isMenuOpen) return;
     const target = e.target as HTMLElement;
     if (target.tagName !== 'svg' && target.tagName !== 'path') {
       setIsOpenDetail(true);
@@ -67,36 +68,21 @@ const Card = ({
         <p>{issue.title}</p>
         <div className=' relative'>
           <button
-            className={`${isOptionsOpen && 'bg-slate-100'} ${
-              !isOptionsOpen && 'hover:bg-slate-50'
+            className={`${isMenuOpen && 'bg-slate-100'} ${
+              !isMenuOpen && 'hover:bg-slate-50'
             }  rounded-md  p-2`}
             type='button'
-            onClick={() => setIsOptionsOpen(true)}
+            onClick={() => setIsMenuOpen(true)}
           >
             <GoKebabHorizontal size={22} />
           </button>
-          {isOptionsOpen && (
-            <ul
-              ref={optionsRef}
-              className=' w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl z-10  absolute '
-            >
-              {cardOptions.map((option) => {
-                const { name } = option;
-                return (
-                  <li
-                    className='flex justify-start rounded-md items-center py-2  px-2 gap-2 hover:bg-gray-200 text-sm '
-                    key={option.id}
-                    onClick={() => {
-                      name === '삭제' && handleDelete(boardId, id);
-                    }}
-                  >
-                    {name === '삭제' && <GoTrashcan size={17} />}
-                    {name === '편집' && <GoPencil size={17} />}
-                    <p>{name}</p>
-                  </li>
-                );
-              })}
-            </ul>
+          {isMenuOpen && (
+            <CardMenu
+              optionsRef={optionsRef}
+              handleDelete={handleDelete}
+              boardId={boardId}
+              cardId={id}
+            />
           )}
         </div>
       </li>
