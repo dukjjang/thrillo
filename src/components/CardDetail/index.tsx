@@ -44,6 +44,8 @@ const CardDetail = ({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const fromIndex = cardIdx;
+
     const tempBoards = [...boards];
 
     const targetBoardIndex = Number(
@@ -67,7 +69,15 @@ const CardDetail = ({
       id: cardIdx < 0 ? Math.ceil(Math.random() * 1000) : id,
     };
 
-    if (targetCard !== undefined && cardIdx >= 0) {
+    const fromBoard = tempBoards.filter((board) => board.state === state)[0];
+
+    if (state !== value.state) {
+      fromBoard.cards.splice(fromIndex, 1);
+    }
+
+    console.log('달라졌나', state !== value.state);
+
+    if (targetCard !== undefined) {
       targetBoard.cards[currentId] = value;
     }
 
