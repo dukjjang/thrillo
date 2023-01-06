@@ -23,8 +23,9 @@ const CardMenu = ({
     if (name === '삭제') handleDelete(boardId, cardId);
     if (name === '편집') {
       setIsOpenDetail(true);
-      setIsMenuOpen(false);
     }
+
+    setIsMenuOpen(false);
   };
   return (
     <ul
