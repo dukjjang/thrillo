@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useState, ChangeEvent } from 'react';
 import { IBoard } from '../../types/Types';
-import AddModal from '../CardDetail/CardDetail';
 import { RxMagnifyingGlass } from 'react-icons/rx';
 import CardDetail from '../CardDetail/CardDetail';
 import { emptyCard } from '../../constants/boardsData';
@@ -12,7 +11,7 @@ interface Props {
   setBoards: Dispatch<SetStateAction<IBoard[]>>;
 }
 
-const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
+const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
   const [modal, setModal] = useState(false);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,4 +58,4 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
   );
 };
 
-export default Inputs;
+export default Search;
