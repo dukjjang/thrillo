@@ -78,7 +78,12 @@ export const useDragAndDrop = (
 
   const handleDelete = (boardId: number, cardId: number) => {
     const tempBoardsList = [...boards];
-    tempBoardsList[boardId].cards.splice(cardId, 1);
+
+    const originalIndex = tempBoardsList[boardId].cards.findIndex(
+      (card) => card.id === cardId
+    );
+
+    tempBoardsList[boardId].cards.splice(originalIndex, 1);
     setBoards(tempBoardsList);
 
     localStorage.setItem('boards', JSON.stringify(tempBoardsList));

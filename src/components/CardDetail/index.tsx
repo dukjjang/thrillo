@@ -75,8 +75,6 @@ const CardDetail = ({
       fromBoard.cards.splice(fromIndex, 1);
     }
 
-    console.log('달라졌나', state !== value.state);
-
     if (targetCard !== undefined) {
       targetBoard.cards[currentId] = value;
     }

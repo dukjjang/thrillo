@@ -83,7 +83,7 @@ const Card = ({
               optionsRef={optionsRef}
               handleDelete={handleDelete}
               boardId={boardId}
-              cardId={id}
+              cardId={issue.id}
               setIsOpenDetail={setIsOpenDetail}
               setIsMenuOpen={setIsMenuOpen}
             />
