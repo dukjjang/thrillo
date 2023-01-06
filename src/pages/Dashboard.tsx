@@ -3,10 +3,13 @@ import Board from '../components/Board';
 import Search from '../components/Search';
 import { useDragAndDrop } from '../hooks/useDranAndDrop';
 import { useSortBoards } from '../hooks/useSortBoards';
+import { FaLightbulb, FaRegLightbulb } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [boards, setBoards] = useState(useSortBoards);
   const [filter, setFilter] = useState('');
+  const [light, setLight] = useState(false);
+
   const [targetCard, setTargetCard] = useState({
     boardId: -1,
     cardId: -1,
@@ -38,8 +41,18 @@ const Dashboard = () => {
 
   return (
     <main className='relative h-screen py-10 px-10 lg:px-[250px] xl:px-[300px] '>
-      <header>
-        <h1 className='mb-10 text-7xl text-center'>Trillo</h1>
+      <header className='mb-10 gap-2 flex justify-center items-center'>
+        {light ? (
+          <FaLightbulb
+            onClick={() => setLight(!light)}
+            size={40}
+            className=' text-yellow-400'
+          />
+        ) : (
+          <FaRegLightbulb onClick={() => setLight(!light)} size={40} />
+        )}
+
+        <h1 className=' text-6xl text-center font-semibold'>Trillo</h1>
       </header>
       <Search
         filter={filter}

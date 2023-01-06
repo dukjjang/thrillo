@@ -32,7 +32,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       </label>
       <input
         id='managerInput'
-        className=' focus:w-[200px] focus:border  duration-300 px-2 w-0  py-2 rounded-lg text-sm mr-2 bg-white '
+        className=' focus:w-[200px] block p-0 focus:border  duration-300 focus:px-2 focus:py-2 rounded-lg text-sm mr-2 bg-white w-0 '
         type='text'
         placeholder='검색'
         onBlur={() => setFilter('')}
