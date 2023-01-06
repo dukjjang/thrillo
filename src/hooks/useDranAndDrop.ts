@@ -3,30 +3,34 @@ import { IBoard } from '../types/Types';
 
 export const useDragAndDrop = (
   boards: IBoard[],
+  filteredBoards: IBoard[],
   setBoards: Dispatch<SetStateAction<IBoard[]>>,
   targetCard: { boardId: number; cardId: number },
   setTargetCard: Dispatch<SetStateAction<{ boardId: number; cardId: number }>>
 ) => {
   const [dragCard, setDargCard] = useState({ boardId: 0, cardId: 0 });
+  const [filteredTargetId, setFilteredTargetId] = useState(0);
 
   const handleDragStart = (boardId: number, cardId: number): void => {
-    setDargCard({ boardId, cardId });
+    const originalIndex = boards[boardId].cards.findIndex(
+      (card) => card.id === cardId
+    );
+    setDargCard({ boardId, cardId: originalIndex });
   };
 
   const handleDrop = (e: DragEvent<HTMLElement>): void => {
     const cardId = dragCard.cardId;
-    const target = e.target as HTMLElement;
-
     const from = dragCard.boardId;
     const to = Number(e.currentTarget.id);
-
-    const targetCardId =
-      target.tagName === 'UL' ? boards[to].cards.length : targetCard.cardId;
-
     const tempBoardsList = [...boards];
+
     const sourceCard = tempBoardsList[from].cards[cardId];
+    sourceCard.state = tempBoardsList[to].state;
+
     tempBoardsList[from].cards.splice(cardId, 1);
-    tempBoardsList[to].cards.splice(targetCardId, 0, sourceCard);
+
+    tempBoardsList[to].cards.splice(targetCard.cardId, 0, sourceCard);
+
     setBoards(tempBoardsList);
 
     setTargetCard({
@@ -37,23 +41,34 @@ export const useDragAndDrop = (
   };
 
   const handleDragEnter = (boardId: number, cardId: number): void => {
+    if (dragCard.boardId === boardId && dragCard.cardId === cardId) return;
+
+    const originalTargetIndex = boards[boardId].cards.findIndex(
+      (card) => card.id === cardId
+    );
+
+    const currentTargetIndex = filteredBoards[boardId].cards.findIndex(
+      (card) => card.id === cardId
+    );
+    setFilteredTargetId(currentTargetIndex);
+
     setTargetCard({
       boardId: boardId,
-      cardId: cardId,
+      cardId: originalTargetIndex,
     });
   };
 
   const dragMargin = (boardId: number, cardId: number) => {
     if (
-      targetCard.cardId === dragCard.cardId &&
+      filteredTargetId === dragCard.cardId &&
       targetCard.boardId === dragCard.boardId
     )
       return;
 
     if (
       targetCard.boardId === boardId &&
-      targetCard.cardId === cardId &&
-      targetCard.cardId !== -1
+      filteredTargetId === cardId &&
+      filteredTargetId !== -1
     ) {
       return 'mt-10';
     }

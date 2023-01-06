@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState, ChangeEvent } from 'react';
+import { Dispatch, SetStateAction, useState, ChangeEvent, useRef } from 'react';
 import { IBoard } from '../../types/Types';
 import { RxMagnifyingGlass } from 'react-icons/rx';
 import CardDetail from '../CardDetail';
@@ -13,6 +13,7 @@ interface Props {
 
 const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
   const [modal, setModal] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
@@ -20,6 +21,14 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
 
   const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const handleblur = (e: React.FocusEvent<HTMLInputElement>): void => {
+    const next = e.relatedTarget;
+    if (next !== null && filter) {
+      searchRef.current?.focus();
+      return;
+    }
   };
 
   return (
@@ -32,10 +41,13 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       </label>
       <input
         id='managerInput'
+        ref={searchRef}
         className=' focus:w-[200px] block p-0 focus:border  duration-300 focus:px-2 focus:py-2 rounded-lg text-sm mr-2 bg-white w-0 '
         type='text'
         placeholder='검색'
-        onBlur={() => setFilter('')}
+        onBlur={(e) => {
+          handleblur(e);
+        }}
         value={filter}
         onChange={handleOnChange}
       />
@@ -47,7 +59,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       </div>
       {modal && (
         <CardDetail
-          cardIdx={-1}
+          cardIdx={-20}
           boards={boards}
           setBoards={setBoards}
           toggleModal={setModal}

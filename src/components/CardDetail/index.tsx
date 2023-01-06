@@ -45,6 +45,7 @@ const CardDetail = ({
     e.preventDefault();
 
     const tempBoards = [...boards];
+
     const targetBoardIndex = Number(
       tempBoards.findIndex((board) => board.state === value.state)
     );
@@ -53,19 +54,27 @@ const CardDetail = ({
       (board) => board.state === value.state
     )[0];
 
-    const targetCard = tempBoards[targetBoardIndex].cards.filter(
-      (card) => card.id === Number(id)
-    )[0];
+    const originalIdx = boards[targetBoardIndex].cards.findIndex(
+      (card) => card.id === id
+    );
+
+    const currentId = cardIdx > 0 ? originalIdx : originalIdx;
+
+    const targetCard = tempBoards[targetBoardIndex].cards[currentId];
 
     const newValue = {
       ...value,
-      id: Math.ceil(Math.random() * 1000),
+      id: cardIdx < 0 ? Math.ceil(Math.random() * 1000) : id,
     };
 
-    if (targetCard !== undefined) targetBoard.cards[cardIdx] = value;
-    if (targetCard === undefined) targetBoard.cards.push(newValue);
+    if (targetCard !== undefined && cardIdx >= 0) {
+      targetBoard.cards[currentId] = value;
+    }
 
-    tempBoards[targetBoardIndex] = targetBoard;
+    if (targetCard === undefined || cardIdx < 0) {
+      targetBoard.cards.push(newValue);
+      tempBoards[targetBoardIndex] = targetBoard;
+    }
 
     setBoards(tempBoards);
     toggleModal(false);

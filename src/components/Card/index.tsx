@@ -42,9 +42,8 @@ const Card = ({
       target.tagName !== 'svg' &&
       target.tagName !== 'path' &&
       target.tagName !== 'BUTTON'
-    ) {
+    )
       setIsOpenDetail(true);
-    }
   };
 
   return (
@@ -54,13 +53,13 @@ const Card = ({
         onClick={handleOpenDetail}
         draggable
         onDragStart={() => {
-          handleDragStart(boardId, id);
+          handleDragStart(boardId, issue.id);
         }}
-        onDragEnter={() => handleDragEnter(boardId, Number(id))}
+        onDragEnter={() => handleDragEnter(boardId, issue.id)}
         className={` ${dragMargin(
           boardId,
           id
-        )}   min-w-[122px] bg-white text-sm duration-300 mb-3 cursor-pointer flex justify-between items-center gap-2 p-4 border rounded-lg shadow-lg`}
+        )}   min-w-[122px] bg-white text-sm duration-300 mb-3 cursor-pointer flex justify-between items-center gap-2 p-4 border rounded-lg shadow-lg z-20`}
       >
         <img
           draggable='false'
@@ -85,6 +84,8 @@ const Card = ({
               handleDelete={handleDelete}
               boardId={boardId}
               cardId={id}
+              setIsOpenDetail={setIsOpenDetail}
+              setIsMenuOpen={setIsMenuOpen}
             />
           )}
         </div>

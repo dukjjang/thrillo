@@ -15,14 +15,6 @@ const Dashboard = () => {
     cardId: -1,
   });
 
-  const {
-    handleDragStart,
-    handleDragEnter,
-    handleDrop,
-    dragMargin,
-    handleDelete,
-  } = useDragAndDrop(boards, setBoards, targetCard, setTargetCard);
-
   const filteredBoards = useMemo(
     () =>
       boards.map((board) => {
@@ -39,6 +31,20 @@ const Dashboard = () => {
     [filter, boards]
   );
 
+  const {
+    handleDragStart,
+    handleDragEnter,
+    handleDrop,
+    dragMargin,
+    handleDelete,
+  } = useDragAndDrop(
+    boards,
+    filteredBoards,
+    setBoards,
+    targetCard,
+    setTargetCard
+  );
+
   return (
     <main className='relative h-screen py-10 px-10 lg:px-[250px] xl:px-[300px] '>
       <header className='mb-10 gap-2 flex justify-center items-center'>
@@ -46,10 +52,14 @@ const Dashboard = () => {
           <FaLightbulb
             onClick={() => setLight(!light)}
             size={40}
-            className=' text-yellow-400'
+            className=' cursor-pointer text-yellow-400'
           />
         ) : (
-          <FaRegLightbulb onClick={() => setLight(!light)} size={40} />
+          <FaRegLightbulb
+            className=' cursor-pointer'
+            onClick={() => setLight(!light)}
+            size={40}
+          />
         )}
 
         <h1 className=' text-6xl text-center font-semibold'>Trillo</h1>

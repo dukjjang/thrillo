@@ -1,14 +1,31 @@
 import { cardOptions } from '../../constants/cardOptions';
 import { GoTrashcan, GoPencil } from 'react-icons/go';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
   optionsRef: any;
   handleDelete: (boardId: number, cardId: number) => void;
+  setIsOpenDetail: Dispatch<SetStateAction<boolean>>;
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
   boardId: number;
   cardId: number;
 }
 
-const CardMenu = ({ optionsRef, handleDelete, boardId, cardId }: Props) => {
+const CardMenu = ({
+  optionsRef,
+  handleDelete,
+  boardId,
+  cardId,
+  setIsOpenDetail,
+  setIsMenuOpen,
+}: Props) => {
+  const handleClick = (name: string) => {
+    if (name === '삭제') handleDelete(boardId, cardId);
+    if (name === '편집') {
+      setIsOpenDetail(true);
+      setIsMenuOpen(false);
+    }
+  };
   return (
     <ul
       ref={optionsRef}
@@ -21,7 +38,7 @@ const CardMenu = ({ optionsRef, handleDelete, boardId, cardId }: Props) => {
             className='flex justify-start rounded-md items-center py-2  px-2 gap-2 hover:bg-gray-200 text-sm '
             key={option.id}
             onClick={() => {
-              name === '삭제' && handleDelete(boardId, cardId);
+              handleClick(name);
             }}
           >
             {name === '삭제' && <GoTrashcan size={17} />}
