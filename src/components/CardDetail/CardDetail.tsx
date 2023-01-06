@@ -5,25 +5,34 @@ import {
   Dispatch,
   SetStateAction,
 } from 'react';
-import { IBoard } from '../../types/Types';
+import { IBoard, Issue } from '../../types/Types';
 import DropDown from '../DropDown/DropDown';
-import { states, managers } from '../../constants/dropList';
+import { states } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 
 interface Props {
-  toggleModal: () => void;
+  toggleModal: Dispatch<SetStateAction<boolean>>;
   boards: IBoard[];
   setBoards: Dispatch<SetStateAction<IBoard[]>>;
+  item: Issue;
+  cardIdx: number;
 }
-const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
+const CardDetail = ({
+  toggleModal,
+  boards,
+  setBoards,
+  item,
+  cardIdx,
+}: Props) => {
+  const { id, title, content, state, manager, deadLine, image } = item;
   const [value, setValue] = useState({
-    id: Math.random(),
-    title: '',
-    content: '',
-    deadLine: '',
-    state: '',
-    manager: '',
-    image: '',
+    id,
+    title,
+    content,
+    deadLine,
+    state,
+    manager,
+    image,
   });
 
   const handleChange = (
@@ -35,15 +44,7 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // add Profile Image
-    const newValue = {
-      ...value,
-      image: managers.filter((manager) => manager.name === value.manager)[0]
-        .image,
-    };
-
     const tempBoards = [...boards];
-
     const targetBoardIndex = Number(
       tempBoards.findIndex((board) => board.state === value.state)
     );
@@ -52,11 +53,22 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
       (board) => board.state === value.state
     )[0];
 
-    targetBoard.cards.push(newValue);
+    const targetCard = tempBoards[targetBoardIndex].cards.filter(
+      (card) => card.id === Number(id)
+    )[0];
+
+    const newValue = {
+      ...value,
+      id: Math.ceil(Math.random() * 1000),
+    };
+
+    if (targetCard !== undefined) targetBoard.cards[cardIdx] = value;
+    if (targetCard === undefined) targetBoard.cards.push(newValue);
+
     tempBoards[targetBoardIndex] = targetBoard;
 
     setBoards(tempBoards);
-    toggleModal();
+    toggleModal(false);
   };
 
   return (
@@ -86,7 +98,7 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
             name='deadLine'
             type='datetime-local'
           />
-          <SearchManager setValue={setValue} />
+          <SearchManager manager={manager} setValue={setValue} />
           <DropDown
             value={value.state}
             name='state'
@@ -99,7 +111,7 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
             </button>
             <button
               type='button'
-              onClick={toggleModal}
+              onClick={() => toggleModal(false)}
               className='py-3 px-5 bg-red-300 rounded'
             >
               취소
@@ -111,4 +123,4 @@ const AddModal = ({ toggleModal, boards, setBoards }: Props) => {
   );
 };
 
-export default AddModal;
+export default CardDetail;

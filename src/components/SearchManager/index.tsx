@@ -10,10 +10,11 @@ import { Issue } from '../../types/Types';
 
 interface Props {
   setValue: Dispatch<SetStateAction<Issue>>;
+  manager: string;
 }
 
-const SearchManager = ({ setValue }: Props) => {
-  const [filter, setFilter] = useState('');
+const SearchManager = ({ setValue, manager }: Props) => {
+  const [filter, setFilter] = useState(manager);
   const [focused, setFocused] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +30,11 @@ const SearchManager = ({ setValue }: Props) => {
   );
 
   const handleClick = (manager: string) => {
-    setValue((prev) => ({ ...prev, manager: manager }));
+    setValue((prev) => ({
+      ...prev,
+      manager: manager,
+      image: managers.filter((x) => x.name === manager)[0].image,
+    }));
     setFilter(manager);
   };
 
@@ -42,7 +47,6 @@ const SearchManager = ({ setValue }: Props) => {
     <div className='w-[200px] relative z-10'>
       <input
         onChange={handleChange}
-        required
         value={filter}
         onFocus={handleFocus}
         onBlur={() => setFocused(false)}

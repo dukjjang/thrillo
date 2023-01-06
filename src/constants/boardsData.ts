@@ -62,3 +62,13 @@ export const boardsData = [
     ],
   },
 ];
+
+export const emptyCard = {
+  id: Math.random(),
+  title: '제목없음',
+  content: '',
+  state: 'todo',
+  deadLine: '',
+  manager: '',
+  image: '/images/profile_image_unknown.png',
+};

@@ -2,6 +2,7 @@ import { Dispatch, DragEvent, SetStateAction } from 'react';
 import { IBoard } from '../../types/Types';
 import Card from '../Card/Card';
 import { HiPlusSm } from 'react-icons/hi';
+import { emptyCard } from '../../constants/boardsData';
 
 interface Props {
   boards: IBoard[];
@@ -31,27 +32,23 @@ const Board = ({
     board: IBoard,
     setBoards: Dispatch<SetStateAction<IBoard[]>>
   ) => {
-    const { state, id } = board;
+    const { state } = board;
 
-    const emptyCard = {
-      id: Math.random(),
-      title: '제목없음',
-      content: '',
+    const newEmptyCard = {
+      ...emptyCard,
       state: state,
-      deadLine: '',
-      manager: '',
-      image: '/images/profile_image_unknown.png',
+      id: Math.ceil(Math.random() * 1000),
     };
 
     const tempBoards = [...boards];
+
     const targetBoardIndex = Number(
       tempBoards.findIndex((board) => board.state === state)
     );
 
-    const targetBoard = tempBoards.filter((board) => board.state === state)[0];
+    const targetBoard = tempBoards[targetBoardIndex];
 
-    targetBoard.cards.push(emptyCard);
-    tempBoards[targetBoardIndex] = targetBoard;
+    targetBoard.cards.push(newEmptyCard);
 
     setBoards(tempBoards);
   };
@@ -72,6 +69,8 @@ const Board = ({
           id={idx}
           boardId={board.id}
           issue={issue}
+          boards={boards}
+          setBoards={setBoards}
           targetCard={targetCard}
           handleDragEnter={handleDragEnter}
           handleDragStart={handleDragStart}

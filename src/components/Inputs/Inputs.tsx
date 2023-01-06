@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction, useState, ChangeEvent } from 'react';
 import { IBoard } from '../../types/Types';
-import AddModal from '../AddModal/AddModal';
+import AddModal from '../CardDetail/CardDetail';
 import { RxMagnifyingGlass } from 'react-icons/rx';
+import CardDetail from '../CardDetail/CardDetail';
+import { emptyCard } from '../../constants/boardsData';
 
 interface Props {
   filter: string;
@@ -45,10 +47,12 @@ const Inputs = ({ setBoards, filter, boards, setFilter }: Props) => {
         새로 만들기
       </div>
       {modal && (
-        <AddModal
+        <CardDetail
+          cardIdx={-1}
           boards={boards}
           setBoards={setBoards}
-          toggleModal={toggleModal}
+          toggleModal={setModal}
+          item={emptyCard}
         />
       )}
     </div>
