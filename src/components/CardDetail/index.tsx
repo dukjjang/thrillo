@@ -6,7 +6,7 @@ import {
   SetStateAction,
 } from 'react';
 import { IBoard, Issue } from '../../types/Types';
-import DropDown from '../DropDown/DropDown';
+import DropDown from '../DropDown';
 import { states } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 

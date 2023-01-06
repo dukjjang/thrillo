@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import Board from '../components/Board/Board';
-import Search from '../components/Search/Search';
+import Board from '../components/Board';
+import Search from '../components/Search';
 import { useDragAndDrop } from '../hooks/useDranAndDrop';
 import { useSortBoards } from '../hooks/useSortBoards';
 

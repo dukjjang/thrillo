@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { IBoard, Issue } from '../../types/Types';
 import { GoKebabHorizontal } from 'react-icons/go';
 import { useCheckClickOutside } from '../../hooks/useCheckClickOutside';
-import CardDetail from '../CardDetail/CardDetail';
+import CardDetail from '../CardDetail';
 import CardMenu from '../CardMenu';
 
 interface Props {

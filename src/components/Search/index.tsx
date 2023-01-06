@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState, ChangeEvent } from 'react';
 import { IBoard } from '../../types/Types';
 import { RxMagnifyingGlass } from 'react-icons/rx';
-import CardDetail from '../CardDetail/CardDetail';
+import CardDetail from '../CardDetail';
 import { emptyCard } from '../../constants/boardsData';
 
 interface Props {
