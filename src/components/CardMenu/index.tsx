@@ -32,7 +32,7 @@ const CardMenu = ({
   return (
     <ul
       ref={domNode as LegacyRef<HTMLUListElement>}
-      className=' w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl z-10  absolute '
+      className=' w-24 md:w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl z-10  absolute '
     >
       {cardOptions.map((option) => {
         const { name } = option;
