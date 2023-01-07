@@ -7,8 +7,6 @@ export const useClickOutside = (
 
   useEffect(() => {
     const handleClick = (e: any): void => {
-      console.log(domNode.current);
-
       if (domNode.current && !domNode.current.contains(e.target)) {
         setTimeout(() => {
           setDisplay(false);
