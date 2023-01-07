@@ -1,9 +1,9 @@
 import { cardOptions } from '../../constants/cardOptions';
 import { GoTrashcan, GoPencil } from 'react-icons/go';
 import { Dispatch, SetStateAction } from 'react';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 interface Props {
-  optionsRef: any;
   handleDelete: (boardId: number, cardId: number) => void;
   setIsOpenDetail: Dispatch<SetStateAction<boolean>>;
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -12,7 +12,6 @@ interface Props {
 }
 
 const CardMenu = ({
-  optionsRef,
   handleDelete,
   boardId,
   cardId,
@@ -27,9 +26,12 @@ const CardMenu = ({
 
     setIsMenuOpen(false);
   };
+
+  const domNode = useClickOutside(setIsMenuOpen);
+
   return (
     <ul
-      ref={optionsRef}
+      ref={domNode}
       className=' w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl z-10  absolute '
     >
       {cardOptions.map((option) => {

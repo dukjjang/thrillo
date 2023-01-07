@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { IBoard, Issue } from '../../types/Types';
 import { GoKebabHorizontal } from 'react-icons/go';
-import { useCheckClickOutside } from '../../hooks/useCheckClickOutside';
+
 import CardDetail from '../CardDetail';
 import CardMenu from '../CardMenu';
 
@@ -31,10 +31,6 @@ const Card = ({
 }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpenDetail, setIsOpenDetail] = useState(false);
-  const optionsRef = useRef<HTMLUListElement>(null);
-
-  useCheckClickOutside(setIsMenuOpen, optionsRef);
-
   const handleOpenDetail = (e: React.MouseEvent<HTMLLIElement>) => {
     if (isMenuOpen) return;
     const target = e.target as HTMLElement;
@@ -80,7 +76,6 @@ const Card = ({
           </button>
           {isMenuOpen && (
             <CardMenu
-              optionsRef={optionsRef}
               handleDelete={handleDelete}
               boardId={boardId}
               cardId={issue.id}
