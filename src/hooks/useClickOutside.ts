@@ -2,10 +2,13 @@ import { useEffect, Dispatch, SetStateAction, useRef, RefObject } from 'react';
 
 export const useClickOutside = (
   setDisplay: Dispatch<SetStateAction<boolean>>
-): RefObject<HTMLUListElement> => {
-  const domNode = useRef<HTMLUListElement>(null);
+): RefObject<HTMLFormElement | HTMLUListElement> => {
+  const domNode = useRef<HTMLFormElement | HTMLUListElement>(null);
+
   useEffect(() => {
     const handleClick = (e: any): void => {
+      console.log(domNode.current);
+
       if (domNode.current && !domNode.current.contains(e.target)) {
         setTimeout(() => {
           setDisplay(false);

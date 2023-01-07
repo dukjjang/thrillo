@@ -1,6 +1,6 @@
 import { cardOptions } from '../../constants/cardOptions';
 import { GoTrashcan, GoPencil } from 'react-icons/go';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, LegacyRef, SetStateAction } from 'react';
 import { useClickOutside } from '../../hooks/useClickOutside';
 
 interface Props {
@@ -31,7 +31,7 @@ const CardMenu = ({
 
   return (
     <ul
-      ref={domNode}
+      ref={domNode as LegacyRef<HTMLUListElement>}
       className=' w-28 py-2 px-1 border bg-white rounded-lg -mt-2 overflow-hidden shadow-xl z-10  absolute '
     >
       {cardOptions.map((option) => {

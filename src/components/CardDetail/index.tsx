@@ -4,11 +4,13 @@ import {
   FormEvent,
   Dispatch,
   SetStateAction,
+  LegacyRef,
 } from 'react';
 import { IBoard, Issue } from '../../types/Types';
 import DropDown from '../DropDown';
 import { states } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 interface Props {
   toggleModal: Dispatch<SetStateAction<boolean>>;
@@ -90,10 +92,13 @@ const CardDetail = ({
     toggleModal(false);
   };
 
+  const domNode = useClickOutside(toggleModal);
+
   return (
     <div className=' fixed top-0 left-0 w-full z-20 h-screen '>
       <div className='  flex justify-center items-center bg-[rgba(0,0,0,0.2)]  h-screen'>
         <form
+          ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
           className=' bg-white py-20 px-20 w-[60%] md:w-[500px] h-[50%] flex flex-col justify-between  '
         >
