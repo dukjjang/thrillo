@@ -32,7 +32,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
   };
 
   return (
-    <div className='py-6 px-10 m-auto w-[95%] border-b-2 mb-5 flex justify-end items-center'>
+    <div className='py-6 md:px-10 m-auto w-[95%] border-b-2 mb-5 flex justify-end items-center'>
       <label className=' cursor-pointer ' htmlFor='managerInput'>
         <RxMagnifyingGlass
           className=' hover:text-sky-400 hover:scale-150 duration-150 '
@@ -53,7 +53,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       />
       <div
         onClick={toggleModal}
-        className=' border cursor-pointer shadow-xl rounded-lg px-5 py-2 text-center text-sm bg-sky-300 '
+        className=' border cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center text-sm bg-sky-300  '
       >
         새로 만들기
       </div>

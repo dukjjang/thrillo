@@ -60,7 +60,7 @@ const Board = ({
       id={board.id.toString()}
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
-      className='py-5 mx-3  w-[500px] md:p-5'
+      className='py-5 mx-3  md:p-5'
     >
       <div className='px-2 mb-3 '>
         <h2>{board.name}</h2>

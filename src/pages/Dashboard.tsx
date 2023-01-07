@@ -71,7 +71,7 @@ const Dashboard = () => {
         setFilter={setFilter}
         setBoards={setBoards}
       />
-      <div className='flex justify-center'>
+      <div className='grid md:grid-cols-3'>
         {filteredBoards.map((board: IBoard) => {
           return (
             <Board
