@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import Board from '../components/Board';
 import Search from '../components/Search';
 import { useDragAndDrop } from '../hooks/useDranAndDrop';
-import { useSortBoards } from '../hooks/useSortBoards';
+import { useSortBoards } from '../constants/getLocalData';
 import { FaLightbulb, FaRegLightbulb } from 'react-icons/fa';
 import { IBoard } from '../types/Types';
 

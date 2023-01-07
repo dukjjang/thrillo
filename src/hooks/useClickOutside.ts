@@ -1,8 +1,8 @@
-import { useEffect, Dispatch, SetStateAction, useRef } from 'react';
+import { useEffect, Dispatch, SetStateAction, useRef, RefObject } from 'react';
 
 export const useClickOutside = (
   setDisplay: Dispatch<SetStateAction<boolean>>
-) => {
+): RefObject<HTMLUListElement> => {
   const domNode = useRef<HTMLUListElement>(null);
   useEffect(() => {
     const handleClick = (e: any): void => {
