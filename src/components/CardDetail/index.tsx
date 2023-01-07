@@ -96,11 +96,11 @@ const CardDetail = ({
 
   return (
     <div className=' fixed top-0 left-0 w-full z-20 h-screen '>
-      <div className='  flex justify-center items-center bg-[rgba(0,0,0,0.2)]  h-screen'>
+      <div className='  flex justify-center items-center bg-[rgba(0,0,0,0.03)]  h-screen'>
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className=' bg-white py-20 px-20 w-full h-full md:w-[500px] flex flex-col justify-between  '
+          className='border rounded-lg shadow-xl bg-white py-20 px-20 w-full h-full md:h-[600px] md:w-[500px] flex flex-col justify-between  '
         >
           <input
             onChange={handleChange}
