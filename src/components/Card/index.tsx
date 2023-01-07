@@ -55,7 +55,7 @@ const Card = ({
         className={` ${dragMargin(
           boardId,
           id
-        )}   min-w-[122px] bg-white text-sm duration-300 mb-3 cursor-pointer flex justify-between items-center gap-2 p-4 border rounded-lg shadow-lg z-20`}
+        )}   min-w-[122px] bg-white text-sm duration-300 mb-3 cursor-pointer flex justify-between items-center gap-2 p-2 md:p-4 border rounded-lg shadow-lg z-20`}
       >
         <img
           draggable='false'
