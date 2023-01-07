@@ -63,7 +63,7 @@ const Dashboard = () => {
           />
         )}
 
-        <h1 className=' text-6xl text-center font-semibold'>Trillo</h1>
+        <h1 className=' text-6xl text-center font-semibold'>Thrillo</h1>
       </header>
       <Search
         filter={filter}
