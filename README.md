@@ -9,7 +9,7 @@
 - 라이브러리 없이 드래그 앤 드랍 기능구현
 - 제목,내용,담당자로 검색기능 구현
 
-배포주소 https://thrillo-dukjjang.vercel.app/
+배포주소 https://thrillo.vercel.app/
 
 ---
 
