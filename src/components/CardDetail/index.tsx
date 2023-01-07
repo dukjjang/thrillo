@@ -100,7 +100,7 @@ const CardDetail = ({
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className=' bg-white py-20 px-20 w-[60%] md:w-[500px] h-[50%] flex flex-col justify-between  '
+          className=' bg-white py-20 px-20 w-full h-full md:w-[500px] flex flex-col justify-between  '
         >
           <input
             onChange={handleChange}
