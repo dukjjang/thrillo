@@ -46,6 +46,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           ref={searchRef}
           onChange={handleOnChange}
           className='peer focus:w-[150px] text-black  block p-0 focus:border duration-300 focus:p-2  rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
+          required
           type='text'
           placeholder='검색'
           onBlur={(e) => {
@@ -53,13 +54,13 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           }}
           value={filter}
         />
-        {filter && (
+        {
           <VscClose
-            className='peer-focus:absolute block right-0  min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
+            className='peer-focus:absolute peer-valid:block peer-invalid:hidden right-0  min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
             onClick={() => setFilter('')}
             size={20}
           />
-        )}
+        }
       </div>
       <div
         onClick={toggleModal}
