@@ -11,6 +11,7 @@ import DropDown from '../DropDown';
 import { states, defaultManagers } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 import { useClickOutside } from '../../hooks/useClickOutside';
+import { defaultProfileImage } from '../../constants/dropList';
 
 interface Props {
   toggleModal: Dispatch<SetStateAction<boolean>>;
@@ -69,7 +70,7 @@ const CardDetail = ({
     const image =
       value.managers.length > 0
         ? defaultManagers.filter((m) => m.name === value.managers[0])[0].image
-        : defaultManagers[0].image;
+        : defaultProfileImage;
 
     const newValue = {
       ...value,
@@ -107,7 +108,7 @@ const CardDetail = ({
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className='border rounded-lg shadow-xl bg-white py-20 px-20 w-full h-full md:h-[600px] md:w-[500px] flex flex-col justify-start  '
+          className='border rounded-lg shadow-xl bg-white py-20 px-20 w-full h-full md:h-[700px] md:w-[600px] flex flex-col justify-start  '
         >
           <input
             onChange={handleChange}

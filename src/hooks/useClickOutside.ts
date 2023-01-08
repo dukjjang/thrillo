@@ -2,8 +2,10 @@ import { useEffect, Dispatch, SetStateAction, useRef, RefObject } from 'react';
 
 export const useClickOutside = (
   setDisplay: Dispatch<SetStateAction<boolean>>
-): RefObject<HTMLFormElement | HTMLUListElement> => {
-  const domNode = useRef<HTMLFormElement | HTMLUListElement>(null);
+): RefObject<HTMLFormElement | HTMLUListElement | HTMLDivElement> => {
+  const domNode = useRef<HTMLFormElement | HTMLUListElement | HTMLDivElement>(
+    null
+  );
 
   useEffect(() => {
     const handleClick = (e: any): void => {
