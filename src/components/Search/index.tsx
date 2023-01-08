@@ -1,9 +1,17 @@
-import { Dispatch, SetStateAction, useState, ChangeEvent, useRef } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useState,
+  ChangeEvent,
+  useRef,
+  RefObject,
+} from 'react';
 import { IBoard } from '../../types/Types';
 import { RxMagnifyingGlass } from 'react-icons/rx';
 import { VscClose } from 'react-icons/vsc';
 import CardDetail from '../CardDetail';
 import { emptyCard } from '../../constants/boardsData';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 interface Props {
   filter: string;
@@ -14,7 +22,8 @@ interface Props {
 
 const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
   const [modal, setModal] = useState(false);
-  const searchRef = useRef<HTMLInputElement>(null);
+  const [focused, setFocused] = useState(false);
+  const searchRef = useClickOutside(setFocused);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
@@ -40,12 +49,12 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           size={20}
         />
       </label>
-      <div className=' flex max-w-20 items-center relative'>
+      <div className={`flex max-w-20   items-center relative`}>
         <input
           id='managerInput'
-          ref={searchRef}
+          ref={searchRef as RefObject<HTMLInputElement>}
           onChange={handleOnChange}
-          className='peer focus:w-[150px] text-black  block p-0 focus:border duration-300 focus:p-2  rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
+          className='peer focus:w-[150px] text-black  p-0 focus:border duration-300 focus:p-2  rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
           required
           type='text'
           placeholder='검색'
