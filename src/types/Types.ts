@@ -4,7 +4,7 @@ export interface Issue {
   content: string;
   state: string;
   deadLine: string;
-  manager: string;
+  managers: string[];
   image: string;
 }
 

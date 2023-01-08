@@ -25,9 +25,9 @@ const Dashboard = () => {
         const filteredCards = board.cards.filter((card) => {
           return (
             card.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-            card.manager
-              .toLowerCase()
-              .includes(debouncedSearch.toLowerCase()) ||
+            card.managers.filter((m) =>
+              m.toLowerCase().includes(debouncedSearch.toLowerCase())
+            ).length ||
             card.content.toLowerCase().includes(debouncedSearch.toLowerCase())
           );
         });

@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { IBoard, Issue } from '../../types/Types';
 import DropDown from '../DropDown';
-import { states } from '../../constants/dropList';
+import { states, defaultManagers } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 import { useClickOutside } from '../../hooks/useClickOutside';
 
@@ -26,14 +26,14 @@ const CardDetail = ({
   item,
   cardIdx,
 }: Props) => {
-  const { id, title, content, state, manager, deadLine, image } = item;
+  const { id, title, content, state, managers, deadLine, image } = item;
   const [value, setValue] = useState({
     id,
     title,
     content,
     deadLine,
     state,
-    manager,
+    managers,
     image,
   });
 
@@ -45,6 +45,7 @@ const CardDetail = ({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('value', value);
 
     const fromIndex = cardIdx;
 
@@ -66,9 +67,16 @@ const CardDetail = ({
 
     const targetCard = tempBoards[targetBoardIndex].cards[currentId];
 
+    console.log('managers', value.managers);
+    const image =
+      value.managers.length > 0
+        ? defaultManagers.filter((m) => m.name === value.managers[0])[0].image
+        : defaultManagers[0].image;
+
     const newValue = {
       ...value,
       id: cardIdx < 0 ? Math.ceil(Math.random() * 1000) : id,
+      image: image,
     };
 
     const fromBoard = tempBoards.filter((board) => board.state === state)[0];
@@ -78,7 +86,8 @@ const CardDetail = ({
     }
 
     if (targetCard !== undefined) {
-      targetBoard.cards[currentId] = value;
+      const newValue = { ...value, image: image };
+      targetBoard.cards[currentId] = newValue;
     }
 
     if (targetCard === undefined || cardIdx < 0) {
@@ -100,14 +109,27 @@ const CardDetail = ({
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className='border rounded-lg shadow-xl bg-white py-20 px-20 w-full h-full md:h-[600px] md:w-[500px] flex flex-col justify-between  '
+          className='border rounded-lg shadow-xl bg-white py-20 px-20 w-full h-full md:h-[600px] md:w-[500px] flex flex-col justify-start  '
         >
           <input
             onChange={handleChange}
             value={value.title}
             name='title'
-            className=' rounded p-2 text-2xl'
+            className='rounded p-2 text-2xl'
             placeholder='제목'
+          />
+          <SearchManager managers={managers} setValue={setValue} />
+          <DropDown
+            value={value.state}
+            name='state'
+            dropList={states}
+            setValue={setValue}
+          />
+          <input
+            onChange={handleChange}
+            value={value.deadLine}
+            name='deadLine'
+            type='datetime-local'
           />
           <textarea
             onChange={handleChange}
@@ -116,19 +138,7 @@ const CardDetail = ({
             className='border rounded p-3'
             placeholder='내용'
           />
-          <input
-            onChange={handleChange}
-            value={value.deadLine}
-            name='deadLine'
-            type='datetime-local'
-          />
-          <SearchManager manager={manager} setValue={setValue} />
-          <DropDown
-            value={value.state}
-            name='state'
-            dropList={states}
-            setValue={setValue}
-          />
+
           <div className='flex justify-center gap-10'>
             <button type='submit' className='py-3 px-5 bg-sky-300 rounded'>
               저장
