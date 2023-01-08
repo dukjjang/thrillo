@@ -77,6 +77,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
         searchRef.current?.focus();
       }, 300);
     }
+    searchRef.current?.focus();
     if (target.tagName === 'svg') {
       setEditMode(false);
 
