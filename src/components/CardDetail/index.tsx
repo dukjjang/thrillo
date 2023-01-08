@@ -45,7 +45,6 @@ const CardDetail = ({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('value', value);
 
     const fromIndex = cardIdx;
 
@@ -67,7 +66,6 @@ const CardDetail = ({
 
     const targetCard = tempBoards[targetBoardIndex].cards[currentId];
 
-    console.log('managers', value.managers);
     const image =
       value.managers.length > 0
         ? defaultManagers.filter((m) => m.name === value.managers[0])[0].image

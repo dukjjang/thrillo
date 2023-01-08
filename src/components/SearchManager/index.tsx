@@ -56,7 +56,6 @@ const SearchManager = ({ setValue, managers }: Props) => {
 
   const handleDeleteManager = (manager: string) => {
     const newManagers = managerList.filter((m) => m !== manager);
-    console.log('뉴 메니저', newManagers);
 
     setValue((prev) => ({
       ...prev,
