@@ -65,7 +65,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
         />
         {
           <VscClose
-            className='peer-focus:absolute block peer-valid:block peer-invalid:hidden right-0 min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
+            className='peer-focus:absolute inline  peer-valid:block peer-invalid:hidden right-0 min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
             onClick={() => setFilter('')}
             size={20}
           />
