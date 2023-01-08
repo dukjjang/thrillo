@@ -101,13 +101,14 @@ const SearchManager = ({ setValue, managers }: Props) => {
         handleEditMode(e);
       }}
       className={` 
-      } cursor-pointer flex w-full justify-start items-center  z-10`}
+      }  py-2 cursor-pointer flex w-full justify-start items-center  z-10`}
     >
       <p className='mr-3 min-w-[45px]'>담당자</p>
       <div
         className={`
       ${editMode && 'bg-sky-50'}
-      flex justify-start relative w-full flex-wrap  `}
+      bg-sky-50
+      flex justify-start items-center h-10 px-2 relative w-full flex-wrap  `}
       >
         {managerList.map((manager) => (
           <div
@@ -140,7 +141,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
             )}
             {filter && (
               <ul
-                className={` cursor-pointer absolute left-0 w-full rounded-b-lg bg-white border `}
+                className={` cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
               >
                 {filteredManagers
                   .filter((m) => !managerList.includes(m.name))
@@ -150,7 +151,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
                       <li
                         key={name}
                         onMouseDown={() => handleClick(name)}
-                        className='p-3 list-none hover:bg-sky-200'
+                        className='text-sm py-2 list-none hover:bg-gray-100'
                       >
                         {name}
                       </li>

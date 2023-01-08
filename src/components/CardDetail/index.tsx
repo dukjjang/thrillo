@@ -108,44 +108,47 @@ const CardDetail = ({
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className='border rounded-lg shadow-xl bg-white py-20 px-20 w-full h-full md:h-[700px] md:w-[600px] flex flex-col justify-start  '
+          className='border rounded-lg shadow-xl bg-white py-10 md:py-20 px-10 md:px-20 w-full h-full md:h-[700px] md:w-[600px] flex flex-col justify-start  '
         >
-          <input
-            onChange={handleChange}
-            value={value.title}
-            name='title'
-            className='rounded p-2 text-2xl'
-            placeholder='제목'
-          />
-          <SearchManager managers={managers} setValue={setValue} />
-          <DropDown
-            value={value.state}
-            name='state'
-            dropList={states}
-            setValue={setValue}
-          />
-          <input
-            onChange={handleChange}
-            value={value.deadLine}
-            name='deadLine'
-            type='datetime-local'
-          />
+          <div className=' border-b mb-3'>
+            <input
+              onChange={handleChange}
+              value={value.title}
+              name='title'
+              className='rounded py-2 text-2xl mb-5'
+              placeholder='제목'
+            />
+            <SearchManager managers={managers} setValue={setValue} />
+            <DropDown
+              value={value.state}
+              name='state'
+              dropList={states}
+              setValue={setValue}
+            />
+            <input
+              className='mb-3 py-2'
+              onChange={handleChange}
+              value={value.deadLine}
+              name='deadLine'
+              type='datetime-local'
+            />
+          </div>
           <textarea
             onChange={handleChange}
             value={value.content}
             name='content'
-            className='border rounded p-3'
+            className=' h-full rounded mb-8'
             placeholder='내용'
           />
 
           <div className='flex justify-center gap-10'>
-            <button type='submit' className='py-3 px-5 bg-sky-300 rounded'>
+            <button type='submit' className='py-3 px-5 bg-sky-200 rounded'>
               저장
             </button>
             <button
               type='button'
               onClick={() => toggleModal(false)}
-              className='py-3 px-5 bg-red-300 rounded'
+              className='py-3 px-5 bg-red-200 rounded'
             >
               취소
             </button>

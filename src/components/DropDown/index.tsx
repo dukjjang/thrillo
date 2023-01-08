@@ -23,7 +23,7 @@ const DropDown = ({ value, name, setValue, dropList }: Props) => {
   }
 
   return (
-    <div className=' w-[200px] relative' onClick={handleSelect}>
+    <div className=' py-2 w-[200px] relative' onClick={handleSelect}>
       <input
         onClick={toggleDropDown}
         className=' cursor-pointer'
