@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState, ChangeEvent, useRef } from 'react';
 import { IBoard } from '../../types/Types';
 import { RxMagnifyingGlass } from 'react-icons/rx';
+import { VscClose } from 'react-icons/vsc';
 import CardDetail from '../CardDetail';
 import { emptyCard } from '../../constants/boardsData';
 
@@ -33,7 +34,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
 
   return (
     <div className='py-6 md:px-10 m-auto w-[95%] border-b-2 mb-5 flex justify-end items-center'>
-      <label className=' cursor-pointer ' htmlFor='managerInput'>
+      <label className='flex cursor-pointer ' htmlFor='managerInput'>
         <RxMagnifyingGlass
           className=' hover:text-sky-400 hover:scale-150 duration-150 '
           size={20}
@@ -51,6 +52,13 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
         value={filter}
         onChange={handleOnChange}
       />
+      {filter && (
+        <VscClose
+          className=' mr-2 hover:text-red-600 hover:scale-150 duration-150 '
+          onClick={() => setFilter('')}
+          size={20}
+        />
+      )}
       <div
         onClick={toggleModal}
         className=' border cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center text-sm bg-sky-300  '
