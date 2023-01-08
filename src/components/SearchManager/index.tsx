@@ -51,9 +51,9 @@ const SearchManager = ({ setValue, managers }: Props) => {
     }));
     setManagerList(newManagers);
     setFilter('');
-    setFocused(!focused);
-    setEditMode(!editMode);
-    searchRef.current?.blur();
+    setTimeout(() => {
+      searchRef.current?.focus();
+    }, 300);
   };
 
   const handleDeleteManager = (manager: string) => {
@@ -73,22 +73,22 @@ const SearchManager = ({ setValue, managers }: Props) => {
   const handleEditMode = (e: MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
 
+    console.log(target);
     if (target.tagName !== 'svg') {
-      searchRef.current?.focus();
       setFocused(true);
       setEditMode(true);
+      setTimeout(() => {
+        searchRef.current?.focus();
+      }, 300);
     }
     if (target.tagName === 'svg') {
-      searchRef.current?.blur();
-
       setFocused(false);
       setEditMode(false);
-    }
-  };
 
-  const handleBlur = () => {
-    setFocused(false);
-    searchRef.current?.blur();
+      setTimeout(() => {
+        searchRef.current?.blur();
+      }, 300);
+    }
   };
 
   console.log('focus', focused);
@@ -101,20 +101,20 @@ const SearchManager = ({ setValue, managers }: Props) => {
         handleEditMode(e);
       }}
       className={` 
-      } cursor-pointer flex w-full justify-start items-center relative z-10`}
+      } cursor-pointer flex w-full justify-start items-center  z-10`}
     >
-      <p className='mr-3 w-12'>담당자</p>
+      <p className='mr-3 min-w-[45px]'>담당자</p>
       <div
         className={`
       ${editMode && 'bg-sky-50'}
-      flex justify-start relative w-full  `}
+      flex justify-start relative w-full flex-wrap  `}
       >
         {managerList.map((manager) => (
           <div
             key={manager}
             className='mr-2 w-auto flex justify-start items-center'
           >
-            <p className='w-[45px]'>{manager}</p>
+            <p className='w-[40px] text-sm'>{manager}</p>
             {editMode && (
               <button
                 type='button'
@@ -126,38 +126,40 @@ const SearchManager = ({ setValue, managers }: Props) => {
             )}
           </div>
         ))}
-        {
-          <div className=' peer-1 inline-block w-full relative'>
+        {editMode && (
+          <div className=' peer-1 inline w-[45px] '>
             {managerList.length < 4 && (
               <input
                 ref={searchRef}
                 onChange={handleChange}
                 value={filter}
                 placeholder={!managerList ? '비어있음' : ''}
-                className='peer bg-sky-50 block cursor-pointer focus:cursor-text w-full '
+                className='peer bg-sky-50  cursor-pointer focus:cursor-text w-[45px] '
                 type='text'
               />
             )}
-            <ul
-              className={` peer-focus:block hidden cursor-pointer absolute w-full rounded-b-lg bg-white border `}
-            >
-              {filteredManagers
-                .filter((m) => !managerList.includes(m.name))
-                .map((manager) => {
-                  const { name } = manager;
-                  return (
-                    <li
-                      key={name}
-                      onMouseDown={() => handleClick(name)}
-                      className='p-3 list-none hover:bg-sky-200'
-                    >
-                      {name}
-                    </li>
-                  );
-                })}
-            </ul>
+            {filter && (
+              <ul
+                className={` cursor-pointer absolute left-0 w-full rounded-b-lg bg-white border `}
+              >
+                {filteredManagers
+                  .filter((m) => !managerList.includes(m.name))
+                  .map((manager) => {
+                    const { name } = manager;
+                    return (
+                      <li
+                        key={name}
+                        onMouseDown={() => handleClick(name)}
+                        className='p-3 list-none hover:bg-sky-200'
+                      >
+                        {name}
+                      </li>
+                    );
+                  })}
+              </ul>
+            )}
           </div>
-        }
+        )}
       </div>
     </div>
   );
