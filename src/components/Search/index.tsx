@@ -45,16 +45,16 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
     <div className='py-6 md:px-10 m-auto w-[95%] border-b-2 mb-5 flex justify-end items-center'>
       <label className='flex cursor-pointer ' htmlFor='managerInput'>
         <RxMagnifyingGlass
-          className=' hover:text-sky-400 hover:scale-150 duration-150 '
+          className='mr-1 hover:text-sky-400 hover:scale-150 duration-150 '
           size={20}
         />
       </label>
-      <div className={`flex max-w-20   items-center relative`}>
+      <div className={`flex w-fit items-center relative`}>
         <input
           id='managerInput'
           ref={searchRef as RefObject<HTMLInputElement>}
           onChange={handleOnChange}
-          className='peer focus:w-[150px] text-black  p-0 focus:border duration-300 focus:p-2  rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
+          className='peer focus:w-[150px] text-black w-0 p-0 focus:border duration-300 focus:p-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white  '
           required
           type='text'
           placeholder='검색'
@@ -65,7 +65,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
         />
         {
           <VscClose
-            className='peer-focus:absolute peer-valid:block peer-invalid:hidden right-0  min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
+            className='peer-focus:absolute block peer-valid:block peer-invalid:hidden right-0 min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
             onClick={() => setFilter('')}
             size={20}
           />
