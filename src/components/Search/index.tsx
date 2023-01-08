@@ -40,7 +40,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           size={20}
         />
       </label>
-      <div className='flex items-center relative'>
+      <div className='flex max-w-fit items-center relative'>
         <input
           id='managerInput'
           ref={searchRef}
