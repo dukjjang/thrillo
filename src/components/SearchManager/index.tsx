@@ -20,7 +20,6 @@ interface Props {
 const SearchManager = ({ setValue, managers }: Props) => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [filter, setFilter] = useState('');
-  const [focused, setFocused] = useState(false);
   const [managerList, setManagerList] = useState<string[]>(managers);
   const [editMode, setEditMode] = useState(false);
   const domNode = useClickOutside(setEditMode);
@@ -66,34 +65,28 @@ const SearchManager = ({ setValue, managers }: Props) => {
 
     searchRef.current?.blur();
     setEditMode(false);
-    setFocused(false);
     setManagerList(newManagers);
   };
 
   const handleEditMode = (e: MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
 
-    console.log(target);
     if (target.tagName !== 'svg') {
-      setFocused(true);
       setEditMode(true);
       setTimeout(() => {
         searchRef.current?.focus();
       }, 300);
     }
     if (target.tagName === 'svg') {
-      setFocused(false);
       setEditMode(false);
 
       setTimeout(() => {
         searchRef.current?.blur();
       }, 300);
     }
+    setFilter('');
   };
 
-  console.log('focus', focused);
-  console.log('editMode', editMode);
-  console.log('managerList', managerList);
   return (
     <div
       ref={domNode as React.RefObject<HTMLDivElement>}
@@ -106,9 +99,10 @@ const SearchManager = ({ setValue, managers }: Props) => {
       <p className='mr-3 min-w-[45px]'>담당자</p>
       <div
         className={`
-      ${editMode && 'bg-sky-50'}
-      bg-sky-50
-      flex justify-start items-center h-10 px-2 relative w-full flex-wrap  `}
+      ${editMode && 'bg-sky-50 border'}
+      
+      bg-[#f7f7f5] 
+      flex justify-start items-center h-10 px-2  relative w-full flex-wrap rounded-md  `}
       >
         {managerList.map((manager) => (
           <div
@@ -135,13 +129,13 @@ const SearchManager = ({ setValue, managers }: Props) => {
                 onChange={handleChange}
                 value={filter}
                 placeholder={!managerList ? '비어있음' : ''}
-                className='peer bg-sky-50  cursor-pointer focus:cursor-text w-[45px] '
+                className='peer flex justify-center items-center bg-[#f7f7f5] text-sm  cursor-pointer focus:cursor-text w-[45px] '
                 type='text'
               />
             )}
             {filter && (
               <ul
-                className={` cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
+                className={`text-sm cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
               >
                 {filteredManagers
                   .filter((m) => !managerList.includes(m.name))
@@ -151,12 +145,13 @@ const SearchManager = ({ setValue, managers }: Props) => {
                       <li
                         key={name}
                         onMouseDown={() => handleClick(name)}
-                        className='text-sm py-2 list-none hover:bg-gray-100'
+                        className=' py-2 list-none hover:bg-gray-50'
                       >
                         {name}
                       </li>
                     );
                   })}
+                {!filteredManagers.length && <li className='py-2'>결과없음</li>}
               </ul>
             )}
           </div>

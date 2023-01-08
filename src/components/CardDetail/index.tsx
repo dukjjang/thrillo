@@ -137,7 +137,7 @@ const CardDetail = ({
             onChange={handleChange}
             value={value.content}
             name='content'
-            className=' h-full rounded mb-8'
+            className=' outline-none h-full resize-none rounded mb-8'
             placeholder='내용'
           />
 
