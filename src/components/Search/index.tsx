@@ -49,7 +49,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           size={20}
         />
       </label>
-      <div className={`flex w-fit items-center relative`}>
+      <div className={` relative flex w-fit items-center`}>
         <input
           id='managerInput'
           ref={searchRef as RefObject<HTMLInputElement>}
@@ -64,11 +64,9 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           value={filter}
         />
         {
-          <VscClose
-            className='peer-focus:absolute inline  peer-valid:block peer-invalid:hidden right-0 min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
-            onClick={() => setFilter('')}
-            size={20}
-          />
+          <div className='peer-focus:absolute inline  peer-valid:block peer-invalid:hidden right-0 min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '>
+            <VscClose className='' onClick={() => setFilter('')} size={20} />
+          </div>
         }
       </div>
       <div
