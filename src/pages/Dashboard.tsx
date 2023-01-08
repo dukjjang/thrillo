@@ -5,6 +5,7 @@ import { useDragAndDrop } from '../hooks/useDranAndDrop';
 import { useSortBoards } from '../constants/getLocalData';
 import { FaLightbulb, FaRegLightbulb } from 'react-icons/fa';
 import { IBoard } from '../types/Types';
+import useDebounce from '../hooks/useDebounce';
 
 const Dashboard = () => {
   const [boards, setBoards] = useState(useSortBoards);
@@ -16,20 +17,24 @@ const Dashboard = () => {
     cardId: -1,
   });
 
+  const debouncedSearch = useDebounce(filter, 300);
+
   const filteredBoards = useMemo(
     () =>
       boards.map((board: IBoard) => {
         const filteredCards = board.cards.filter((card) => {
           return (
-            card.title.toLowerCase().includes(filter.toLowerCase()) ||
-            card.manager.toLowerCase().includes(filter.toLowerCase()) ||
-            card.content.toLowerCase().includes(filter.toLowerCase())
+            card.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+            card.manager
+              .toLowerCase()
+              .includes(debouncedSearch.toLowerCase()) ||
+            card.content.toLowerCase().includes(debouncedSearch.toLowerCase())
           );
         });
         const filteredBoard = { ...board, cards: filteredCards };
         return filteredBoard;
       }),
-    [filter, boards]
+    [boards, debouncedSearch]
   );
 
   const {

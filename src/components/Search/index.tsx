@@ -43,18 +43,18 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       <input
         id='managerInput'
         ref={searchRef}
-        className=' focus:w-[200px] block p-0 focus:border  duration-300 focus:px-2 focus:py-2 rounded-lg text-sm mr-2 bg-white w-0 '
+        onChange={handleOnChange}
+        className=' focus:w-[200px] block p-0 focus:border  duration-300 focus:px-2 focus:py-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
         type='text'
         placeholder='검색'
         onBlur={(e) => {
           handleblur(e);
         }}
         value={filter}
-        onChange={handleOnChange}
       />
       {filter && (
         <VscClose
-          className=' mr-2 hover:text-red-600 hover:scale-150 duration-150 '
+          className=' mr-2 hover:text-red-500 hover:scale-150 duration-150 '
           onClick={() => setFilter('')}
           size={20}
         />
