@@ -40,25 +40,27 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           size={20}
         />
       </label>
-      <input
-        id='managerInput'
-        ref={searchRef}
-        onChange={handleOnChange}
-        className=' focus:w-full text-black md:max-w-[200px] block p-0 focus:border duration-300 focus:px-2 focus:py-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
-        type='text'
-        placeholder='검색'
-        onBlur={(e) => {
-          handleblur(e);
-        }}
-        value={filter}
-      />
-      {filter && (
-        <VscClose
-          className='  min-w-fit mr-2 hover:text-red-500 hover:scale-150 duration-150 '
-          onClick={() => setFilter('')}
-          size={20}
+      <div className='flex items-center relative'>
+        <input
+          id='managerInput'
+          ref={searchRef}
+          onChange={handleOnChange}
+          className='peer focus:w-[150px] text-black  block p-0 focus:border duration-300 focus:p-2  rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
+          type='text'
+          placeholder='검색'
+          onBlur={(e) => {
+            handleblur(e);
+          }}
+          value={filter}
         />
-      )}
+        {filter && (
+          <VscClose
+            className='peer-focus:absolute block right-0  min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '
+            onClick={() => setFilter('')}
+            size={20}
+          />
+        )}
+      </div>
       <div
         onClick={toggleModal}
         className=' border cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center min-w-fit text-sm bg-sky-300  '
