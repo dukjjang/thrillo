@@ -44,7 +44,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
         id='managerInput'
         ref={searchRef}
         onChange={handleOnChange}
-        className=' focus:w-[200px] block p-0 focus:border  duration-300 focus:px-2 focus:py-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
+        className=' focus:w-full block p-0 focus:border  duration-300 focus:px-2 focus:py-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white w-0 '
         type='text'
         placeholder='검색'
         onBlur={(e) => {
@@ -54,14 +54,14 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       />
       {filter && (
         <VscClose
-          className=' mr-2 hover:text-red-500 hover:scale-150 duration-150 '
+          className='  min-w-fit mr-2 hover:text-red-500 hover:scale-150 duration-150 '
           onClick={() => setFilter('')}
           size={20}
         />
       )}
       <div
         onClick={toggleModal}
-        className=' border cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center text-sm bg-sky-300  '
+        className=' border cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center min-w-fit text-sm bg-sky-300  '
       >
         새로 만들기
       </div>
