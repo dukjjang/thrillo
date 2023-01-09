@@ -72,18 +72,19 @@ const SearchManager = ({ setValue, managers }: Props) => {
   const handleEditMode = (e: MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
 
-    if (target.tagName !== 'svg') {
-      setEditMode(true);
-      setTimeout(() => {
-        searchRef.current?.focus();
-      }, 300);
-    }
+    if (target.tagName !== 'svg') setEditMode(true);
+
+    setTimeout(() => {
+      searchRef.current?.focus();
+    }, 300);
+
     if (target.tagName === 'svg') {
       setEditMode(false);
       setTimeout(() => {
         searchRef.current?.blur();
       }, 300);
     }
+
     setFilter('');
   };
 
