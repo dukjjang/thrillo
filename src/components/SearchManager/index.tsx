@@ -106,7 +106,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
         {managerList.map((manager) => (
           <div
             key={manager}
-            className='mr-2 w-auto flex justify-start items-center'
+            className='mr-2 w-auto flex justify-start items-center '
           >
             <p className='w-[40px] text-sm'>{manager}</p>
             {editMode && (
@@ -120,15 +120,16 @@ const SearchManager = ({ setValue, managers }: Props) => {
             )}
           </div>
         ))}
-        {editMode && (
-          <div className=' peer-1 inline w-[45px] '>
+        {
+          <div className=' peer-1  '>
             {managerList.length < 4 && (
               <input
                 ref={searchRef}
+                readOnly={editMode ? false : true}
                 onChange={handleChange}
                 value={filter}
                 placeholder={!managerList ? '비어있음' : ''}
-                className='peer flex justify-center z-20 items-center bg-[#f7f7f5] text-sm  cursor-pointer w-[45px] '
+                className='peer bg-[#f7f7f5] flex justify-center z-40 items-center text-sm  cursor-pointer '
                 type='text'
               />
             )}
@@ -145,7 +146,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
                         key={name}
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={() => handleClick(name)}
-                        className=' py-2 list-none hover:bg-gray-50'
+                        className=' py-2 list-none hover:bg-gray-100'
                       >
                         {name}
                       </li>
@@ -155,7 +156,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
               </ul>
             )}
           </div>
-        )}
+        }
       </div>
     </div>
   );
