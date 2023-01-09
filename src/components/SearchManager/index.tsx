@@ -73,18 +73,11 @@ const SearchManager = ({ setValue, managers }: Props) => {
     const target = e.target as HTMLElement;
 
     if (target.tagName !== 'svg') setEditMode(true);
+    else setEditMode(false);
 
     setTimeout(() => {
       searchRef.current?.focus();
     }, 300);
-
-    if (target.tagName === 'svg') {
-      setEditMode(false);
-      setTimeout(() => {
-        searchRef.current?.blur();
-      }, 300);
-    }
-
     setFilter('');
   };
 
@@ -116,7 +109,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
               <button
                 type='button'
                 onClick={() => handleDeleteManager(manager)}
-                className={` hover:bg-gray-100 active:bg-gray-300 rounded`}
+                className={`mr-1 hover:bg-gray-100 active:bg-gray-300 rounded`}
               >
                 <VscClose size={16} />
               </button>

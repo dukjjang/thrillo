@@ -103,7 +103,7 @@ const CardDetail = ({
   const domNode = useClickOutside(toggleModal);
 
   return (
-    <div className=' fixed top-0 left-0 w-full z-20 h-full '>
+    <div className=' overflow-hidden touch-none fixed top-0 left-0 w-full z-20 h-full '>
       <div className='  flex justify-center items-center bg-[rgba(0,0,0,0.03)]  h-full'>
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
