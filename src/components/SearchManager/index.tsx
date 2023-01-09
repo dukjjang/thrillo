@@ -87,9 +87,9 @@ const SearchManager = ({ setValue, currentManagers }: Props) => {
       <div
         ref={domNode as React.RefObject<HTMLDivElement>}
         onClick={handleEditMode}
-        className={`relative flex justify-start items-center w-[75%] p-1 border cursor-pointer `}
+        className={`relative flex justify-start items-center w-[75%] border rounded-lg cursor-pointer bg-neutral-100 `}
       >
-        <ul className='peer/ul flex gap-1 mr-1 whitespace-nowrap'>
+        <ul className='peer/ul flex gap-1 mr-1 p-1 whitespace-nowrap'>
           {managerList.map((name) => (
             <li key={name} className='flex justify-center items-center'>
               <p>{name}</p>
@@ -108,12 +108,12 @@ const SearchManager = ({ setValue, currentManagers }: Props) => {
             onBlur={() => setFilter('')}
             value={filter}
             placeholder={!managerList ? '비어있음' : ''}
-            className='peer/input w-full rounded-lg'
+            className='peer/input w-full rounded-lg bg-neutral-100'
             type='text'
           />
         )}
         {editMode && displayInput && (
-          <ul className='absolute w-full z-10 top-[35px] border bg-white'>
+          <ul className='absolute w-full z-10 top-[35px] border rounded-lg bg-white'>
             {!filteredManagerList.length && <li className='p-1'>결과없음</li>}
             {filteredManagerList
               .filter((m) => !managerList.includes(m.name))
