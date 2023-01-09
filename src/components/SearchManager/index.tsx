@@ -110,6 +110,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
             )}
           </div>
         ))}
+
         <div className='flex peer-1 w-full  '>
           {managerList.length < 4 && (
             <input

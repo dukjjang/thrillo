@@ -118,6 +118,7 @@ const CardDetail = ({
               className='rounded py-2 text-2xl mb-5 w-full'
               placeholder='제목'
             />
+            <input type='text' className='border rounded-lg' />
             <SearchManager managers={managers} setValue={setValue} />
             <DropDown
               value={value.state}
