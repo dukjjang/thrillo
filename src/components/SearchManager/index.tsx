@@ -75,9 +75,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
     if (target.tagName !== 'svg') setEditMode(true);
     else setEditMode(false);
 
-    setTimeout(() => {
-      searchRef.current?.focus();
-    }, 300);
+    searchRef.current?.focus();
     setFilter('');
   };
 
@@ -95,7 +93,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
         className={`
       ${editMode && 'bg-sky-50 border'}
       bg-[#f7f7f5] 
-      flex justify-start items-center h-10 px-2 relative w-full  rounded-md `}
+      flex justify-start items-center h-10 px-2 relative w-full rounded-md `}
       >
         {managerList.map((manager) => (
           <div
@@ -117,7 +115,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
           </div>
         ))}
         {
-          <div className='flex peer-1  '>
+          <div className='flex peer-1 w-full  '>
             {managerList.length < 4 && (
               <input
                 ref={searchRef}
@@ -125,7 +123,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
                 onChange={handleChange}
                 value={filter}
                 placeholder={!managerList ? '비어있음' : ''}
-                className='peer w-full bg-[#f7f7f5] flex justify-center z-40 items-center text-sm cursor-pointer '
+                className='peer w-full bg-[#f7f7f5] flex justify-center items-center text-sm cursor-pointer '
                 type='text'
               />
             )}
