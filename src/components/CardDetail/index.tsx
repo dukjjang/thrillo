@@ -12,6 +12,7 @@ import { states, defaultManagers } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { defaultProfileImage } from '../../constants/dropList';
+import DatePicker from '../DatePicker';
 
 interface Props {
   toggleModal: Dispatch<SetStateAction<boolean>>;
@@ -108,7 +109,7 @@ const CardDetail = ({
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className='border rounded-lg shadow-xl bg-white py-10 md:py-20 px-10 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start  '
+          className='border rounded-lg shadow-xl bg-white py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start  '
         >
           <div className=' border-b mb-3'>
             <input
@@ -126,13 +127,7 @@ const CardDetail = ({
               dropList={states}
               setValue={setValue}
             />
-            <input
-              className='mb-3 py-2'
-              onChange={handleChange}
-              value={value.deadLine}
-              name='deadLine'
-              type='datetime-local'
-            />
+            <DatePicker handleChange={handleChange} deadLine={value.deadLine} />
           </div>
           <textarea
             onChange={handleChange}

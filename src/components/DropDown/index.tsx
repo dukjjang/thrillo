@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState, RefObject } from 'react';
 import { Issue } from '../../types/Types';
 import { useClickOutside } from '../../hooks/useClickOutside';
+import { TbPentagon } from 'react-icons/tb';
 
 interface Props {
   name: string;
@@ -24,28 +25,40 @@ const DropDown = ({ value, name, setValue, dropList }: Props) => {
   }
 
   return (
-    <div
-      ref={dropDownRef as RefObject<HTMLDivElement>}
-      className=' py-2 w-[200px] relative'
-      onClick={handleSelect}
-    >
-      <input
-        onClick={toggleDropDown}
-        className=' cursor-pointer'
-        placeholder={name}
-        value={value}
-        readOnly
-      />
+    <div className='flex whitespace-nowrap py-1 text-sm'>
+      <div className='flex justify-start items-center w-[72px] gap-1 mr-2 text-sm whitespace-nowrap'>
+        <TbPentagon
+          className='min-w-[18px] h-[18px] mr-1 opacity-50 '
+          size={18}
+        />
+        <p>상태</p>
+      </div>
       <div
-        className={`${
-          isDropDown ? 'block' : 'hidden'
-        } absolute w-full bg-white cursor-pointer border rounded z-10  `}
+        ref={dropDownRef as RefObject<HTMLDivElement>}
+        className='relative w-[200px] py-1 '
       >
-        {dropList.map((item, key) => (
-          <div key={key} className=' hover:bg-sky-300 p-2'>
-            {item}
-          </div>
-        ))}
+        <input
+          onClick={toggleDropDown}
+          className=' cursor-pointer'
+          placeholder={name}
+          value={value}
+          readOnly
+        />
+        <div
+          className={`${
+            isDropDown ? 'block' : 'hidden'
+          } absolute w-full whitespace-nowrap bg-white cursor-pointer border rounded z-10  `}
+        >
+          {dropList.map((item, key) => (
+            <div
+              key={key}
+              onClick={handleSelect}
+              className=' hover:bg-sky-300 p-2'
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

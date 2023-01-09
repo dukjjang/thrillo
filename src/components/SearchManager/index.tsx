@@ -79,24 +79,23 @@ const SearchManager = ({ setValue, managers }: Props) => {
   };
 
   return (
-    <div className='flex'>
-      <div className='flex justify-start items-center w-[20%] gap-1'>
-        <TbUsers size={20} />
+    <div className='flex py-1'>
+      <div className='flex justify-start items-center w-[72px] gap-1 mr-2 text-sm whitespace-nowrap'>
+        <TbUsers className='min-w-[18px] h-[18px] mr-1 opacity-50 ' size={18} />
         <p>담당자</p>
       </div>
       <div
         ref={domNode as React.RefObject<HTMLDivElement>}
         onClick={handleEditMode}
-        className={`flex justify-start items-center w-[80%] py-2 cursor-pointer `}
+        className={`flex justify-start items-center w-[75%] py-1 cursor-pointer `}
       >
-        <ul className='flex  gap-1 whitespace-nowrap'>
+        <ul className='flex gap-1 text-sm whitespace-nowrap'>
           {managerList.map((name) => (
-            <li
-              onClick={() => handleDelete(name)}
-              className='flex justify-center items-center'
-            >
+            <li key={name} className='flex justify-center items-center'>
               <p>{name}</p>
-              <VscClose size={16} />
+              <div onClick={() => handleDelete(name)}>
+                <VscClose size={16} />
+              </div>
             </li>
           ))}
         </ul>
