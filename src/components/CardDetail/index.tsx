@@ -115,7 +115,7 @@ const CardDetail = ({
               onChange={handleChange}
               value={value.title}
               name='title'
-              className='rounded py-2 text-2xl mb-5'
+              className='rounded py-2 text-2xl mb-5 w-full'
               placeholder='제목'
             />
             <SearchManager managers={managers} setValue={setValue} />

@@ -11,6 +11,7 @@ import { defaultManagers } from '../../constants/dropList';
 import { Issue } from '../../types/Types';
 import { VscClose } from 'react-icons/vsc';
 import { useClickOutside } from '../../hooks/useClickOutside';
+import e from 'express';
 
 interface Props {
   setValue: Dispatch<SetStateAction<Issue>>;
@@ -142,7 +143,8 @@ const SearchManager = ({ setValue, managers }: Props) => {
                     return (
                       <li
                         key={name}
-                        onMouseDown={() => handleClick(name)}
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => handleClick(name)}
                         className=' py-2 list-none hover:bg-gray-50'
                       >
                         {name}
