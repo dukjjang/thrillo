@@ -94,26 +94,28 @@ const SearchManager = ({ setValue, managers }: Props) => {
         handleEditMode(e);
       }}
       className={` 
-      }  py-2 cursor-pointer flex w-full justify-start items-center z-10`}
+      } py-2 cursor-pointer flex w-full justify-start items-center z-10`}
     >
       <p className='mr-3 min-w-[45px]'>담당자</p>
       <div
         className={`
       ${editMode && 'bg-sky-50 border'}
       bg-[#f7f7f5] 
-      flex justify-start items-center h-10 px-2 relative w-full flex-wrap rounded-md `}
+      flex justify-start items-center h-10 px-2 relative w-full  rounded-md `}
       >
         {managerList.map((manager) => (
           <div
             key={manager}
-            className='mr-2 w-auto flex justify-start items-center '
+            className={`${
+              !editMode && 'mr-2'
+            } w-auto flex justify-start items-center `}
           >
             <p className='w-[40px] text-sm'>{manager}</p>
             {editMode && (
               <button
                 type='button'
                 onClick={() => handleDeleteManager(manager)}
-                className={`mr-1 hover:bg-gray-100 active:bg-gray-300 rounded`}
+                className={` hover:bg-gray-100 active:bg-gray-300 rounded`}
               >
                 <VscClose size={16} />
               </button>
@@ -121,7 +123,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
           </div>
         ))}
         {
-          <div className=' peer-1  '>
+          <div className='flex peer-1  '>
             {managerList.length < 4 && (
               <input
                 ref={searchRef}
@@ -129,7 +131,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
                 onChange={handleChange}
                 value={filter}
                 placeholder={!managerList ? '비어있음' : ''}
-                className='peer bg-[#f7f7f5] flex justify-center z-40 items-center text-sm  cursor-pointer '
+                className='peer w-full bg-[#f7f7f5] flex justify-center z-40 items-center text-sm cursor-pointer '
                 type='text'
               />
             )}
