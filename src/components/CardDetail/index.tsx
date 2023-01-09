@@ -5,14 +5,14 @@ import {
   Dispatch,
   SetStateAction,
   LegacyRef,
-} from 'react';
-import { IBoard, Issue } from '../../types/Types';
-import { states, choosableManagers } from '../../constants/dropList';
-import SearchManager from '../SearchManager';
-import { useClickOutside } from '../../hooks/useClickOutside';
-import { defaultProfileImage } from '../../constants/dropList';
-import DatePicker from '../DatePicker';
-import CardStatus from '../CardStatus/index';
+} from "react";
+import { IBoard, Issue } from "../../types/Types";
+import { states, choosableManagers } from "../../constants/dropList";
+import SearchManager from "../SearchManager";
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { defaultProfileImage } from "../../constants/dropList";
+import DatePicker from "../DatePicker";
+import CardStatus from "../CardStatus/index";
 
 interface Props {
   toggleModal: Dispatch<SetStateAction<boolean>>;
@@ -97,31 +97,31 @@ const CardDetail = ({
 
     setBoards(tempBoards);
 
-    localStorage.setItem('boards', JSON.stringify(tempBoards));
+    localStorage.setItem("boards", JSON.stringify(tempBoards));
     toggleModal(false);
   };
 
   const domNode = useClickOutside(toggleModal);
 
   return (
-    <div className=' overflow-hidden touch-none fixed top-0 left-0 w-full z-20 h-full '>
-      <div className='  flex justify-center items-center bg-[rgba(0,0,0,0.03)]  h-full'>
+    <div className=" overflow-hidden touch-none fixed top-0 left-0 w-full z-20 h-full ">
+      <div className="  flex justify-center items-center bg-[rgba(0,0,0,0.03)]  h-full">
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className='border rounded-lg shadow-xl bg-white py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start  '
+          className="border rounded-lg shadow-xl bg-white py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start  "
         >
-          <div className=' border-b mb-3 pb-3'>
+          <div className=" border-b mb-3 pb-3">
             <input
               onChange={handleChange}
               value={value.title}
-              name='title'
-              className='rounded py-2 text-2xl mb-5 w-full'
-              placeholder='제목'
+              name="title"
+              className="rounded py-2 text-2xl mb-5 w-full"
+              placeholder="제목"
             />
             <CardStatus
               value={value.state}
-              name='state'
+              name="state"
               dropList={states}
               setValue={setValue}
             />
@@ -131,19 +131,19 @@ const CardDetail = ({
           <textarea
             onChange={handleChange}
             value={value.content}
-            name='content'
-            className=' outline-none h-full resize-none rounded mb-8'
-            placeholder='내용'
+            name="content"
+            className=" outline-none h-full resize-none rounded mb-8"
+            placeholder="내용"
           />
 
-          <div className='flex justify-center gap-10'>
-            <button type='submit' className='py-3 px-5 bg-sky-200 rounded'>
+          <div className="flex justify-center gap-10">
+            <button type="submit" className="py-3 px-5 bg-sky-200 rounded">
               저장
             </button>
             <button
-              type='button'
+              type="button"
               onClick={() => toggleModal(false)}
-              className='py-3 px-5 bg-red-200 rounded'
+              className="py-3 px-5 bg-red-200 rounded"
             >
               취소
             </button>

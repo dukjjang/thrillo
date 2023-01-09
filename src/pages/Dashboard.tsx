@@ -1,16 +1,16 @@
-import { useMemo, useState } from 'react';
-import Board from '../components/Board';
-import Search from '../components/Search';
-import { useDragAndDrop } from '../hooks/useDranAndDrop';
-import { useSortBoards } from '../constants/getLocalData';
-import { FaLightbulb, FaRegLightbulb } from 'react-icons/fa';
-import { IBoard } from '../types/Types';
-import useDebounce from '../hooks/useDebounce';
+import { useMemo, useState } from "react";
+import Board from "../components/Board";
+import Search from "../components/Search";
+import { useDragAndDrop } from "../hooks/useDranAndDrop";
+import { useSortBoards } from "../constants/getLocalData";
+import { FaLightbulb, FaRegLightbulb } from "react-icons/fa";
+import { IBoard } from "../types/Types";
+import useDebounce from "../hooks/useDebounce";
 
 const Dashboard = () => {
   const [boards, setBoards] = useState(useSortBoards);
-  const [filter, setFilter] = useState('');
-  const [light, setLight] = useState(false);
+  const [filter, setFilter] = useState("");
+  const [light, setLight] = useState(true);
 
   const [targetCard, setTargetCard] = useState({
     boardId: -1,
@@ -52,23 +52,23 @@ const Dashboard = () => {
   );
 
   return (
-    <main className='relative h-full py-10 px-10 lg:px-[250px] xl:px-[300px] '>
-      <header className='mb-10 gap-2 flex justify-center items-center'>
+    <main className="relative h-full py-10 px-10 lg:px-[250px] xl:px-[300px] ">
+      <header className="mb-10 gap-2 flex justify-center items-center">
         {light ? (
           <FaLightbulb
             onClick={() => setLight(!light)}
             size={40}
-            className=' cursor-pointer text-yellow-400'
+            className=" cursor-pointer text-yellow-400"
           />
         ) : (
           <FaRegLightbulb
-            className=' cursor-pointer'
+            className=" cursor-pointer"
             onClick={() => setLight(!light)}
             size={40}
           />
         )}
 
-        <h1 className=' text-6xl text-center font-semibold'>Thrillo</h1>
+        <h1 className=" text-6xl text-center font-semibold">Thrillo</h1>
       </header>
       <Search
         filter={filter}
@@ -76,7 +76,7 @@ const Dashboard = () => {
         setFilter={setFilter}
         setBoards={setBoards}
       />
-      <div className='grid md:grid-cols-3'>
+      <div className="grid md:grid-cols-3">
         {filteredBoards.map((board: IBoard) => {
           return (
             <Board
