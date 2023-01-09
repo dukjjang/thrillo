@@ -74,9 +74,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
 
     if (target.tagName !== 'svg') setEditMode(true);
     else setEditMode(false);
-
     searchRef.current?.focus();
-    setFilter('');
   };
 
   return (
@@ -118,6 +116,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
               ref={searchRef}
               readOnly={editMode ? false : true}
               onChange={handleChange}
+              onBlur={() => setFilter('')}
               value={filter}
               placeholder={!managerList ? '비어있음' : ''}
               className='peer w-full bg-[#f7f7f5] flex justify-center items-center text-sm cursor-pointer '
