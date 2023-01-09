@@ -82,9 +82,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
   return (
     <div
       ref={domNode as React.RefObject<HTMLDivElement>}
-      onClick={(e) => {
-        handleEditMode(e);
-      }}
+      onClick={handleEditMode}
       className={` 
       } py-2 cursor-pointer flex w-full justify-start items-center z-10`}
     >
@@ -114,46 +112,44 @@ const SearchManager = ({ setValue, managers }: Props) => {
             )}
           </div>
         ))}
-        {
-          <div className='flex peer-1 w-full  '>
-            {managerList.length < 4 && (
-              <input
-                ref={searchRef}
-                readOnly={editMode ? false : true}
-                onChange={handleChange}
-                value={filter}
-                placeholder={!managerList ? '비어있음' : ''}
-                className='peer w-full bg-[#f7f7f5] flex justify-center items-center text-sm cursor-pointer '
-                type='text'
-              />
-            )}
-            {
-              <ul
-                className={`text-sm cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
-              >
-                {editMode && !filter && managerList.length < 4 && (
-                  <li className='py-2'>결과없음</li>
-                )}
-                {filter &&
-                  filteredManagers
-                    .filter((m) => !managerList.includes(m.name))
-                    .map((manager) => {
-                      const { name } = manager;
-                      return (
-                        <li
-                          key={name}
-                          onMouseDown={(e) => e.preventDefault()}
-                          onClick={() => handleClick(name)}
-                          className=' py-2 list-none hover:bg-gray-100'
-                        >
-                          {name}
-                        </li>
-                      );
-                    })}
-              </ul>
-            }
-          </div>
-        }
+        <div className='flex peer-1 w-full  '>
+          {managerList.length < 4 && (
+            <input
+              ref={searchRef}
+              readOnly={editMode ? false : true}
+              onChange={handleChange}
+              value={filter}
+              placeholder={!managerList ? '비어있음' : ''}
+              className='peer w-full bg-[#f7f7f5] flex justify-center items-center text-sm cursor-pointer '
+              type='text'
+            />
+          )}
+          {
+            <ul
+              className={`text-sm cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
+            >
+              {editMode && !filter && managerList.length < 4 && (
+                <li className='py-2'>결과없음</li>
+              )}
+              {filter &&
+                filteredManagers
+                  .filter((m) => !managerList.includes(m.name))
+                  .map((manager) => {
+                    const { name } = manager;
+                    return (
+                      <li
+                        key={name}
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => handleClick(name)}
+                        className=' py-2 list-none hover:bg-gray-100'
+                      >
+                        {name}
+                      </li>
+                    );
+                  })}
+            </ul>
+          }
+        </div>
       </div>
     </div>
   );
