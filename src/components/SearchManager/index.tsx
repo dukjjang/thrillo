@@ -127,28 +127,31 @@ const SearchManager = ({ setValue, managers }: Props) => {
                 type='text'
               />
             )}
-            {filter && (
+            {
               <ul
                 className={`text-sm cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
               >
-                {filteredManagers
-                  .filter((m) => !managerList.includes(m.name))
-                  .map((manager) => {
-                    const { name } = manager;
-                    return (
-                      <li
-                        key={name}
-                        onMouseDown={(e) => e.preventDefault()}
-                        onClick={() => handleClick(name)}
-                        className=' py-2 list-none hover:bg-gray-100'
-                      >
-                        {name}
-                      </li>
-                    );
-                  })}
-                {!filteredManagers.length && <li className='py-2'>결과없음</li>}
+                {!filter && managerList.length < 4 && (
+                  <li className='py-2'>결과없음</li>
+                )}
+                {filter &&
+                  filteredManagers
+                    .filter((m) => !managerList.includes(m.name))
+                    .map((manager) => {
+                      const { name } = manager;
+                      return (
+                        <li
+                          key={name}
+                          onMouseDown={(e) => e.preventDefault()}
+                          onClick={() => handleClick(name)}
+                          className=' py-2 list-none hover:bg-gray-100'
+                        >
+                          {name}
+                        </li>
+                      );
+                    })}
               </ul>
-            )}
+            }
           </div>
         }
       </div>
