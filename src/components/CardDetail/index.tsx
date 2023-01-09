@@ -7,7 +7,7 @@ import {
   LegacyRef,
 } from 'react';
 import { IBoard, Issue } from '../../types/Types';
-import { states, defaultManagers } from '../../constants/dropList';
+import { states, choosableManagers } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { defaultProfileImage } from '../../constants/dropList';
@@ -70,7 +70,7 @@ const CardDetail = ({
 
     const image =
       value.managers.length > 0
-        ? defaultManagers.filter((m) => m.name === value.managers[0])[0].image
+        ? choosableManagers.filter((m) => m.name === value.managers[0])[0].image
         : defaultProfileImage;
 
     const newValue = {
@@ -125,7 +125,7 @@ const CardDetail = ({
               dropList={states}
               setValue={setValue}
             />
-            <SearchManager managers={managers} setValue={setValue} />
+            <SearchManager currentManagers={managers} setValue={setValue} />
             <DatePicker handleChange={handleChange} deadLine={value.deadLine} />
           </div>
           <textarea

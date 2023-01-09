@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from 'react';
-import { TbPentagon } from 'react-icons/tb';
+import { IoCalendarNumberOutline } from 'react-icons/io5';
 import Property from '../Property';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 const DatePicker = ({ handleChange, deadLine }: Props) => {
   return (
     <div className='flex  py-2'>
-      <Property Icon={TbPentagon} name='마감일' />
+      <Property Icon={IoCalendarNumberOutline} name='마감일' />
       <input
         className=' text-sm '
         onChange={handleChange}
