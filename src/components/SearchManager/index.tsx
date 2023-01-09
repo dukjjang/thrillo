@@ -131,7 +131,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
               <ul
                 className={`text-sm cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
               >
-                {!filter && managerList.length < 4 && (
+                {editMode && !filter && managerList.length < 4 && (
                   <li className='py-2'>결과없음</li>
                 )}
                 {filter &&
