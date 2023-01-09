@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState, RefObject } from 'react';
 import { Issue } from '../../types/Types';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 interface Props {
   name: string;
@@ -10,6 +11,7 @@ interface Props {
 
 const DropDown = ({ value, name, setValue, dropList }: Props) => {
   const [isDropDown, setIsDropDown] = useState(false);
+  const dropDownRef = useClickOutside(setIsDropDown);
   const toggleDropDown = () => {
     setIsDropDown(!isDropDown);
   };
@@ -18,12 +20,15 @@ const DropDown = ({ value, name, setValue, dropList }: Props) => {
     const eventTarget = e.target as HTMLElement;
     if (eventTarget.tagName !== 'INPUT')
       setValue((prev) => ({ ...prev, [name]: eventTarget.innerText }));
-
     toggleDropDown();
   }
 
   return (
-    <div className=' py-2 w-[200px] relative' onClick={handleSelect}>
+    <div
+      ref={dropDownRef as RefObject<HTMLDivElement>}
+      className=' py-2 w-[200px] relative'
+      onClick={handleSelect}
+    >
       <input
         onClick={toggleDropDown}
         className=' cursor-pointer'

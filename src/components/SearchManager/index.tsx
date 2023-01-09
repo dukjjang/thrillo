@@ -77,10 +77,8 @@ const SearchManager = ({ setValue, managers }: Props) => {
         searchRef.current?.focus();
       }, 300);
     }
-    searchRef.current?.focus();
     if (target.tagName === 'svg') {
       setEditMode(false);
-
       setTimeout(() => {
         searchRef.current?.blur();
       }, 300);
@@ -95,15 +93,14 @@ const SearchManager = ({ setValue, managers }: Props) => {
         handleEditMode(e);
       }}
       className={` 
-      }  py-2 cursor-pointer flex w-full justify-start items-center  z-10`}
+      }  py-2 cursor-pointer flex w-full justify-start items-center z-10`}
     >
       <p className='mr-3 min-w-[45px]'>담당자</p>
       <div
         className={`
       ${editMode && 'bg-sky-50 border'}
-      
       bg-[#f7f7f5] 
-      flex justify-start items-center h-10 px-2  relative w-full flex-wrap rounded-md  `}
+      flex justify-start items-center h-10 px-2 relative w-full flex-wrap rounded-md `}
       >
         {managerList.map((manager) => (
           <div
@@ -130,7 +127,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
                 onChange={handleChange}
                 value={filter}
                 placeholder={!managerList ? '비어있음' : ''}
-                className='peer flex justify-center items-center bg-[#f7f7f5] text-sm  cursor-pointer focus:cursor-text w-[45px] '
+                className='peer flex justify-center z-20 items-center bg-[#f7f7f5] text-sm  cursor-pointer w-[45px] '
                 type='text'
               />
             )}

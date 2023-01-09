@@ -54,7 +54,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           id='managerInput'
           ref={searchRef as RefObject<HTMLInputElement>}
           onChange={handleOnChange}
-          className='peer focus:w-[150px] text-black w-0 p-0 focus:border duration-300 focus:p-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white  '
+          className='peer focus:w-[170px] text-black w-0 p-0 focus:border duration-300 focus:p-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white  '
           required
           type='text'
           placeholder='검색'
@@ -64,7 +64,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           value={filter}
         />
         {
-          <div className='peer-focus:absolute inline  peer-valid:block peer-invalid:hidden right-0 min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '>
+          <div className='peer-focus:absolute inline cursor-pointer peer-valid:block peer-invalid:hidden right-0 min-w-fit mx-1 hover:text-red-500 hover:scale-150 duration-150 '>
             <VscClose className='' onClick={() => setFilter('')} size={20} />
           </div>
         }
