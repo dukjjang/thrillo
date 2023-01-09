@@ -10,6 +10,7 @@ import {
 import { defaultManagers } from '../../constants/dropList';
 import { Issue } from '../../types/Types';
 import { VscClose } from 'react-icons/vsc';
+import { TbUsers } from 'react-icons/tb';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import e from 'express';
 
@@ -78,81 +79,105 @@ const SearchManager = ({ setValue, managers }: Props) => {
   };
 
   return (
-    <div
-      ref={domNode as React.RefObject<HTMLDivElement>}
-      onClick={handleEditMode}
-      className={` 
-      } py-2 cursor-pointer flex w-full justify-start items-center z-10`}
-    >
-      <p className='mr-3 min-w-[45px]'>담당자</p>
+    <div className='flex'>
+      <div className='flex gap-1'>
+        <TbUsers size={20} />
+        <p>담당자</p>
+      </div>
       <div
-        className={`
-      ${editMode && 'bg-sky-50 border'}
-      bg-[#f7f7f5] 
-      flex justify-start items-center h-10 px-2 relative w-full rounded-md `}
+        ref={domNode as React.RefObject<HTMLDivElement>}
+        onClick={handleEditMode}
+        className={`py-2 cursor-pointer flex w-full justify-start items-center z-10`}
       >
-        {managerList.map((manager) => (
-          <div
-            key={manager}
-            className={`${
-              !editMode && 'mr-2'
-            } w-auto flex justify-start items-center `}
-          >
-            <p className='w-[40px] text-sm'>{manager}</p>
-            {editMode && (
-              <button
-                type='button'
-                onClick={() => handleDeleteManager(manager)}
-                className={`mr-1 hover:bg-gray-100 active:bg-gray-300 rounded`}
-              >
-                <VscClose size={16} />
-              </button>
-            )}
-          </div>
-        ))}
-
-        <div className='flex peer-1 w-full  '>
-          {managerList.length < 4 && (
-            <input
-              ref={searchRef}
-              readOnly={editMode ? false : true}
-              onChange={handleChange}
-              onBlur={() => setFilter('')}
-              value={filter}
-              placeholder={!managerList ? '비어있음' : ''}
-              className='peer w-full bg-[#f7f7f5] flex justify-center items-center text-sm cursor-pointer '
-              type='text'
-            />
-          )}
-          {
-            <ul
-              className={`text-sm cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
-            >
-              {editMode && !filter && managerList.length < 4 && (
-                <li className='py-2'>결과없음</li>
-              )}
-              {filter &&
-                filteredManagers
-                  .filter((m) => !managerList.includes(m.name))
-                  .map((manager) => {
-                    const { name } = manager;
-                    return (
-                      <li
-                        key={name}
-                        onMouseDown={(e) => e.preventDefault()}
-                        onClick={() => handleClick(name)}
-                        className=' py-2 list-none hover:bg-gray-100'
-                      >
-                        {name}
-                      </li>
-                    );
-                  })}
-            </ul>
-          }
-        </div>
+        <input
+          ref={searchRef}
+          onChange={handleChange}
+          onBlur={() => setFilter('')}
+          value={filter}
+          placeholder={!managerList ? '비어있음' : ''}
+          className='rounded-lg border'
+          type='text'
+        />
       </div>
     </div>
   );
 };
 
 export default SearchManager;
+
+{
+  /* <div
+ref={domNode as React.RefObject<HTMLDivElement>}
+onClick={handleEditMode}
+className={` 
+} py-2 cursor-pointer flex w-full justify-start items-center z-10`}
+>
+<p className='mr-3 min-w-[45px]'>담당자</p>
+<div
+  className={`
+${editMode && 'bg-sky-50 border'}
+bg-[#f7f7f5] 
+flex justify-start items-center h-10 px-2 relative w-full rounded-md `}
+>
+  {managerList.map((manager) => (
+    <div
+      key={manager}
+      className={`${
+        !editMode && 'mr-2'
+      } w-auto flex justify-start items-center `}
+    >
+      <p className='w-[40px] text-sm'>{manager}</p>
+      {editMode && (
+        <button
+          type='button'
+          onClick={() => handleDeleteManager(manager)}
+          className={`mr-1 hover:bg-gray-100 active:bg-gray-300 rounded`}
+        >
+          <VscClose size={16} />
+        </button>
+      )}
+    </div>
+  ))}
+
+  <div className='flex peer-1 w-full  '>
+    {managerList.length < 4 && (
+      <input
+        ref={searchRef}
+        readOnly={editMode ? false : true}
+        onChange={handleChange}
+        onBlur={() => setFilter('')}
+        value={filter}
+        placeholder={!managerList ? '비어있음' : ''}
+        className='peer w-full bg-[#f7f7f5] flex justify-center items-center text-sm cursor-pointer '
+        type='text'
+      />
+    )}
+    {
+      <ul
+        className={`text-sm cursor-pointer absolute left-0 top-[38px] w-full z-20 rounded-b-lg bg-white border `}
+      >
+        {editMode && !filter && managerList.length < 4 && (
+          <li className='py-2'>결과없음</li>
+        )}
+        {filter &&
+          filteredManagers
+            .filter((m) => !managerList.includes(m.name))
+            .map((manager) => {
+              const { name } = manager;
+              return (
+                <li
+                  key={name}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => handleClick(name)}
+                  className=' py-2 list-none hover:bg-gray-100'
+                >
+                  {name}
+                </li>
+              );
+            })}
+      </ul>
+    }
+  </div>
+</div>
+</div> */
+}
