@@ -57,7 +57,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
     }, 300);
   };
 
-  const handleDeleteManager = (manager: string) => {
+  const handleDelete = (manager: string) => {
     const newManagers = managerList.filter((m) => m !== manager);
 
     setValue((prev) => ({
@@ -80,22 +80,33 @@ const SearchManager = ({ setValue, managers }: Props) => {
 
   return (
     <div className='flex'>
-      <div className='flex gap-1'>
+      <div className='flex justify-start items-center w-[20%] gap-1'>
         <TbUsers size={20} />
         <p>담당자</p>
       </div>
       <div
         ref={domNode as React.RefObject<HTMLDivElement>}
         onClick={handleEditMode}
-        className={`py-2 cursor-pointer flex w-full justify-start items-center z-10`}
+        className={`flex justify-start items-center w-[80%] py-2 cursor-pointer `}
       >
+        <ul className='flex  gap-1 whitespace-nowrap'>
+          {managerList.map((name) => (
+            <li
+              onClick={() => handleDelete(name)}
+              className='flex justify-center items-center'
+            >
+              <p>{name}</p>
+              <VscClose size={16} />
+            </li>
+          ))}
+        </ul>
         <input
           ref={searchRef}
           onChange={handleChange}
           onBlur={() => setFilter('')}
           value={filter}
           placeholder={!managerList ? '비어있음' : ''}
-          className='rounded-lg border'
+          className=' w-full rounded-lg border'
           type='text'
         />
       </div>
