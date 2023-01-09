@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState, RefObject } from 'react';
 import { Issue } from '../../types/Types';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { TbPentagon } from 'react-icons/tb';
+import Property from '../Property';
 
 interface Props {
   name: string;
@@ -10,7 +11,7 @@ interface Props {
   setValue: Dispatch<SetStateAction<Issue>>;
 }
 
-const DropDown = ({ value, name, setValue, dropList }: Props) => {
+const CardStatus = ({ value, name, setValue, dropList }: Props) => {
   const [isDropDown, setIsDropDown] = useState(false);
   const dropDownRef = useClickOutside(setIsDropDown);
   const toggleDropDown = () => {
@@ -26,13 +27,7 @@ const DropDown = ({ value, name, setValue, dropList }: Props) => {
 
   return (
     <div className='flex whitespace-nowrap py-1 text-sm'>
-      <div className='flex justify-start items-center w-[72px] gap-1 mr-2 text-sm whitespace-nowrap'>
-        <TbPentagon
-          className='min-w-[18px] h-[18px] mr-1 opacity-50 '
-          size={18}
-        />
-        <p>상태</p>
-      </div>
+      <Property Icon={TbPentagon} name='상태' />
       <div
         ref={dropDownRef as RefObject<HTMLDivElement>}
         className='relative w-[200px] py-1 '
@@ -64,4 +59,4 @@ const DropDown = ({ value, name, setValue, dropList }: Props) => {
   );
 };
 
-export default DropDown;
+export default CardStatus;

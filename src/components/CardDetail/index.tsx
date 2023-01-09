@@ -7,12 +7,12 @@ import {
   LegacyRef,
 } from 'react';
 import { IBoard, Issue } from '../../types/Types';
-import DropDown from '../DropDown';
 import { states, defaultManagers } from '../../constants/dropList';
 import SearchManager from '../SearchManager';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { defaultProfileImage } from '../../constants/dropList';
 import DatePicker from '../DatePicker';
+import CardStatus from '../CardStatus/index';
 
 interface Props {
   toggleModal: Dispatch<SetStateAction<boolean>>;
@@ -111,7 +111,7 @@ const CardDetail = ({
           onSubmit={handleSubmit}
           className='border rounded-lg shadow-xl bg-white py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start  '
         >
-          <div className=' border-b mb-3'>
+          <div className=' border-b mb-3 pb-3'>
             <input
               onChange={handleChange}
               value={value.title}
@@ -119,14 +119,13 @@ const CardDetail = ({
               className='rounded py-2 text-2xl mb-5 w-full'
               placeholder='제목'
             />
-
-            <SearchManager managers={managers} setValue={setValue} />
-            <DropDown
+            <CardStatus
               value={value.state}
               name='state'
               dropList={states}
               setValue={setValue}
             />
+            <SearchManager managers={managers} setValue={setValue} />
             <DatePicker handleChange={handleChange} deadLine={value.deadLine} />
           </div>
           <textarea

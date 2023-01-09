@@ -12,7 +12,7 @@ import { Issue } from '../../types/Types';
 import { VscClose } from 'react-icons/vsc';
 import { TbUsers } from 'react-icons/tb';
 import { useClickOutside } from '../../hooks/useClickOutside';
-import e from 'express';
+import Property from '../Property';
 
 interface Props {
   setValue: Dispatch<SetStateAction<Issue>>;
@@ -80,10 +80,7 @@ const SearchManager = ({ setValue, managers }: Props) => {
 
   return (
     <div className='flex py-1'>
-      <div className='flex justify-start items-center w-[72px] gap-1 mr-2 text-sm whitespace-nowrap'>
-        <TbUsers className='min-w-[18px] h-[18px] mr-1 opacity-50 ' size={18} />
-        <p>담당자</p>
-      </div>
+      <Property Icon={TbUsers} name='담당자' />
       <div
         ref={domNode as React.RefObject<HTMLDivElement>}
         onClick={handleEditMode}
