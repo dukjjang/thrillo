@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { IBoard, Issue } from '../../types/Types';
-import { GoKebabHorizontal } from 'react-icons/go';
+import { Dispatch, SetStateAction, useState } from "react";
+import { IBoard, Issue } from "../../types/Types";
+import { GoKebabHorizontal } from "react-icons/go";
 
-import CardDetail from '../CardDetail';
-import CardMenu from '../CardMenu';
+import CardDetail from "../CardDetail";
+import CardMenu from "../CardMenu";
 
 interface Props {
   id: number;
@@ -35,9 +35,9 @@ const Card = ({
     if (isMenuOpen) return;
     const target = e.target as HTMLElement;
     if (
-      target.tagName !== 'svg' &&
-      target.tagName !== 'path' &&
-      target.tagName !== 'BUTTON'
+      target.tagName !== "svg" &&
+      target.tagName !== "path" &&
+      target.tagName !== "BUTTON"
     )
       setIsOpenDetail(true);
   };
@@ -55,21 +55,21 @@ const Card = ({
         className={` ${dragMargin(
           boardId,
           id
-        )}   min-w-[122px] bg-white text-sm duration-300 mb-3 cursor-pointer flex justify-between items-center gap-2 p-2 md:p-4 border rounded-lg shadow-lg z-20`}
+        )} min-w-[122px] bg-white text-sm duration-300 mb-3 cursor-pointer flex justify-between items-center gap-2 p-2 md:p-4 border  rounded-lg shadow-lg z-20`}
       >
         <img
-          draggable='false'
-          alt='profile'
+          draggable="false"
+          alt="profile"
           src={issue.image}
-          className=' object-cover hidden md:block rounded-full w-10 h-10 '
+          className=" object-cover hidden md:block rounded-full w-10 h-10 "
         />
         <p>{issue.title}</p>
-        <div className=' relative'>
+        <div className=" relative">
           <button
-            className={`${isMenuOpen && 'bg-slate-100'} ${
-              !isMenuOpen && 'hover:bg-slate-50'
+            className={`${isMenuOpen && "bg-slate-100"} ${
+              !isMenuOpen && "hover:bg-slate-50"
             }  rounded-md  p-2`}
-            type='button'
+            type="button"
             onClick={() => setIsMenuOpen(true)}
           >
             <GoKebabHorizontal size={22} />

@@ -1,8 +1,8 @@
-import { Dispatch, DragEvent, SetStateAction } from 'react';
-import { IBoard } from '../../types/Types';
-import Card from '../Card';
-import { HiPlusSm } from 'react-icons/hi';
-import { emptyCard } from '../../constants/boardsData';
+import { Dispatch, DragEvent, SetStateAction } from "react";
+import { IBoard } from "../../types/Types";
+import Card from "../Card";
+import { HiPlusSm } from "react-icons/hi";
+import { emptyCard } from "../../constants/boardsData";
 
 interface Props {
   boards: IBoard[];
@@ -52,7 +52,7 @@ const Board = ({
 
     setBoards(tempBoards);
 
-    localStorage.setItem('boards', JSON.stringify(tempBoards));
+    localStorage.setItem("boards", JSON.stringify(tempBoards));
   };
 
   return (
@@ -60,9 +60,9 @@ const Board = ({
       id={board.id.toString()}
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
-      className='py-5 mx-3  md:p-5'
+      className="py-5 mx-3  md:p-5"
     >
-      <div className='px-2 mb-3 '>
+      <div className="px-2 mb-3 ">
         <h2>{board.name}</h2>
       </div>
       {board.cards.map((issue, idx) => (
@@ -82,10 +82,10 @@ const Board = ({
       ))}
       <button
         onClick={() => createEmptyCard(board, setBoards)}
-        className='bg-slate-100 rounded-lg w-full py-3 text-sm flex justify-center items-center gap-2'
+        className="bg-red-700 rounded-lg w-full py-3 text-sm flex justify-center items-center gap-2"
       >
         <HiPlusSm size={22} />
-        <p className=' opacity-40'>Add new card</p>
+        <p className="text-white opacity-90">Add new card</p>
       </button>
     </ul>
   );

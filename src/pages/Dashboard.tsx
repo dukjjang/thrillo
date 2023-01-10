@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import Snowfall from "react-snowfall";
 import Board from "../components/Board";
 import Search from "../components/Search";
 import { useDragAndDrop } from "../hooks/useDranAndDrop";
@@ -53,6 +54,7 @@ const Dashboard = () => {
 
   return (
     <main className="relative h-full py-10 px-10 lg:px-[250px] xl:px-[300px] ">
+      <Snowfall snowflakeCount={70} />
       <header className="mb-10 gap-2 flex justify-center items-center">
         {light ? (
           <FaLightbulb
@@ -68,7 +70,9 @@ const Dashboard = () => {
           />
         )}
 
-        <h1 className=" text-6xl text-center font-semibold">Thrillo</h1>
+        <h1 className="flex text-red-700 text-6xl [&_p]:text-green-700 text-center font-semibold">
+          T<p>h</p>r<p>i</p>llo
+        </h1>
       </header>
       <Search
         filter={filter}
@@ -100,3 +104,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+//
+//
+//

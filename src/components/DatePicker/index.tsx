@@ -9,10 +9,10 @@ interface Props {
 
 const DatePicker = ({ handleChange, deadLine }: Props) => {
   return (
-    <div className='flex  py-2'>
+    <div className='flex py-2 '>
       <Property Icon={IoCalendarNumberOutline} name='마감일' />
       <input
-        className=' text-sm '
+        className='text-sm bg-slate-100 '
         onChange={handleChange}
         value={deadLine}
         name='deadLine'

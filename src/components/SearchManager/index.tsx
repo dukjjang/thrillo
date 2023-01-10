@@ -7,10 +7,11 @@ import {
   useRef,
   MouseEvent,
 } from "react";
-import { choosableManagers } from "../../constants/dropList";
 import { Issue } from "../../types/Types";
 import { VscClose } from "react-icons/vsc";
 import { TbUsers } from "react-icons/tb";
+
+import { choosableManagers } from "../../constants/dropList";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import Property from "../Property";
 

@@ -6,6 +6,7 @@ import {
   SetStateAction,
   LegacyRef,
 } from "react";
+import Snowfall from "react-snowfall";
 import { IBoard, Issue } from "../../types/Types";
 import { states, choosableManagers } from "../../constants/dropList";
 import SearchManager from "../SearchManager";
@@ -109,14 +110,14 @@ const CardDetail = ({
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className="border rounded-lg shadow-xl bg-white py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start  "
+          className="border rounded-lg shadow-xl py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start bg-slate-200 "
         >
           <div className=" border-b mb-3 pb-3">
             <input
               onChange={handleChange}
               value={value.title}
               name="title"
-              className="rounded py-2 text-2xl mb-5 w-full"
+              className="bg-slate-100 rounded p-2 text-2xl mb-5 w-full"
               placeholder="제목"
             />
             <CardStatus
@@ -132,22 +133,24 @@ const CardDetail = ({
             onChange={handleChange}
             value={value.content}
             name="content"
-            className=" outline-none h-full resize-none rounded mb-8"
+            className=" outline-none h-full resize-none rounded mb-8 bg-slate-100"
             placeholder="내용"
           />
 
           <div className="flex justify-center gap-10">
-            <button type="submit" className="py-3 px-5 bg-sky-200 rounded">
+            <button type="submit" className="py-2 px-5 bg-green-700 text-white rounded-lg">
               저장
             </button>
             <button
               type="button"
               onClick={() => toggleModal(false)}
-              className="py-3 px-5 bg-red-200 rounded"
+              className="py-2 px-5 bg-red-700 text-white rounded-lg"
             >
               취소
             </button>
           </div>
+
+      <Snowfall snowflakeCount={70} />
         </form>
       </div>
     </div>
