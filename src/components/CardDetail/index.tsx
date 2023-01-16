@@ -71,7 +71,9 @@ const CardDetail = ({
 
     const image =
       value.managers.length > 0
-        ? choosableManagers.filter((m) => m.name === value.managers[0])[0].image
+        ? choosableManagers.filter(
+            (manager) => manager.name === value.managers[0]
+          )[0].image
         : defaultProfileImage;
 
     const newValue = {
@@ -110,7 +112,7 @@ const CardDetail = ({
         <form
           ref={domNode as LegacyRef<HTMLFormElement>}
           onSubmit={handleSubmit}
-          className="border rounded-lg shadow-xl py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start bg-slate-200 "
+          className="border md:rounded-lg shadow-xl py-10 md:py-20 px-8 md:px-20 w-full h-full overflow-hidden md:h-[700px] md:w-[600px] flex flex-col justify-start bg-slate-200 "
         >
           <div className=" border-b mb-3 pb-3">
             <input
@@ -138,7 +140,10 @@ const CardDetail = ({
           />
 
           <div className="flex justify-center gap-10">
-            <button type="submit" className="py-2 px-5 bg-green-700 text-white rounded-lg">
+            <button
+              type="submit"
+              className="py-2 px-5 bg-green-700 text-white rounded-lg"
+            >
               저장
             </button>
             <button
@@ -150,7 +155,7 @@ const CardDetail = ({
             </button>
           </div>
 
-      <Snowfall snowflakeCount={70} />
+          <Snowfall snowflakeCount={70} />
         </form>
       </div>
     </div>

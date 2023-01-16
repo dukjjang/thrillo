@@ -68,7 +68,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       </div>
       <div
         onClick={toggleModal}
-        className=" border cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center min-w-fit text-sm text-white bg-green-700  "
+        className=" cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center min-w-fit text-sm text-white border bg-green-700  "
       >
         새로 만들기
       </div>

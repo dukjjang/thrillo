@@ -53,7 +53,7 @@ const Dashboard = () => {
   );
 
   return (
-    <main className="relative h-full py-10 px-10 lg:px-[250px] xl:px-[300px] ">
+    <main className=" fixed h-full w-full py-10 px-10 lg:px-[250px] xl:px-[300px] ">
       <Snowfall snowflakeCount={70} />
       <header className="mb-10 gap-2 flex justify-center items-center">
         {light ? (
