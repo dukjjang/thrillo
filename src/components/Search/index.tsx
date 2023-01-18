@@ -4,7 +4,6 @@ import {
   useState,
   ChangeEvent,
   RefObject,
-  Fragment,
 } from "react";
 import { IBoard } from "../../types/Types";
 import { RxMagnifyingGlass } from "react-icons/rx";
@@ -54,7 +53,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
           id="managerInput"
           ref={searchRef as RefObject<HTMLInputElement>}
           onChange={handleOnChange}
-          className="peer focus:w-[170px] text-black w-0 p-0 focus:border duration-300 focus:p-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white  "
+          className="peer focus:w-[170px] lg:focus:w-[220px] text-black w-0 p-0 focus:border duration-300 focus:p-2 rounded-lg text-sm mr-2 focus:mr-0 bg-white  "
           required
           type="text"
           placeholder="검색"

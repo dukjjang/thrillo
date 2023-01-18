@@ -4,7 +4,7 @@
 
 html,
 body {
-  @apply h-full bg-slate-400;
+  @apply h-full bg-slate-500;
 }
 
 input,
