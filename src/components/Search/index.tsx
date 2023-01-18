@@ -4,6 +4,7 @@ import {
   useState,
   ChangeEvent,
   RefObject,
+  Fragment,
 } from "react";
 import { IBoard } from "../../types/Types";
 import { RxMagnifyingGlass } from "react-icons/rx";
@@ -41,14 +42,14 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
   };
 
   return (
-    <div className="py-6 md:px-10 m-auto w-[95%] border-b-2 mb-5 flex justify-end items-center">
+    <div className="flex items-center">
       <label className="flex cursor-pointer " htmlFor="managerInput">
         <RxMagnifyingGlass
           className="mr-1 hover:text-sky-400 hover:scale-150 duration-150 "
           size={20}
         />
       </label>
-      <div className={` relative flex w-fit items-center`}>
+      <div className={`peer/wrapper relative flex w-fit items-center`}>
         <input
           id="managerInput"
           ref={searchRef as RefObject<HTMLInputElement>}
@@ -68,7 +69,7 @@ const Search = ({ setBoards, filter, boards, setFilter }: Props) => {
       </div>
       <div
         onClick={toggleModal}
-        className=" cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center min-w-fit text-sm text-white border bg-green-700  "
+        className=" peer-focus-within/wrapper:hidden duration-300 ease-in-out cursor-pointer shadow-xl rounded-lg px-3 py-2 text-center min-w-fit text-sm text-white border bg-green-700  "
       >
         새로 만들기
       </div>

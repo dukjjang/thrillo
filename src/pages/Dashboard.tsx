@@ -7,6 +7,7 @@ import { useSortBoards } from "../constants/getLocalData";
 import { FaLightbulb, FaRegLightbulb } from "react-icons/fa";
 import { IBoard } from "../types/Types";
 import useDebounce from "../hooks/useDebounce";
+import Today from "../components/Today";
 
 const Dashboard = () => {
   const [boards, setBoards] = useState(useSortBoards);
@@ -53,9 +54,9 @@ const Dashboard = () => {
   );
 
   return (
-    <main className=" fixed h-full w-full py-10 px-10 lg:px-[250px] xl:px-[300px] ">
+    <main className=" fixed overflow-auto  h-full w-full py-10 px-10 lg:px-[250px] xl:px-[300px] ">
       <Snowfall snowflakeCount={70} />
-      <header className="mb-10 gap-2 flex justify-center items-center">
+      <header className="mb-3 gap-2 flex justify-center items-center">
         {light ? (
           <FaLightbulb
             onClick={() => setLight(!light)}
@@ -74,12 +75,16 @@ const Dashboard = () => {
           T<p>h</p>r<p>i</p>llo
         </h1>
       </header>
-      <Search
-        filter={filter}
-        boards={boards}
-        setFilter={setFilter}
-        setBoards={setBoards}
-      />
+
+      <div className="py-6 md:px-10 m-auto w-[95%] border-b-2 mb-5 flex justify-between items-center">
+        <Today />
+        <Search
+          filter={filter}
+          boards={boards}
+          setFilter={setFilter}
+          setBoards={setBoards}
+        />
+      </div>
       <div className="grid md:grid-cols-3">
         {filteredBoards.map((board: IBoard) => {
           return (
