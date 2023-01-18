@@ -62,8 +62,11 @@ const Board = ({
       onDrop={handleDrop}
       className="py-5 mx-3  md:p-5"
     >
-      <div className="px-2 mb-3 ">
+      <div className="px-2 mb-3 flex justify-between  ">
         <h2>{board.name}</h2>
+        <h2 className="text-slate-200 border rounded-full px-2">
+          {board.cards.length}
+        </h2>
       </div>
       {board.cards.map((issue, idx) => (
         <Card
